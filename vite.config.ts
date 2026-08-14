@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  // เปลี่ยน thanet-profile เป็นชื่อ repo ที่จะสร้างบน GitHub
-  base: '/thanet-profile/',
+  // repo name: thanet-profile-
+  base: '/thanet-profile-/',
   server: {
     host: '0.0.0.0',
     port: 5173,
