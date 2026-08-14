@@ -108,6 +108,65 @@ body {
 }
 
 /* ========================================
+   Flip Card (3D transform — CSS only)
+   ======================================== */
+.flip-container {
+  perspective: 1200px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-container.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* ========================================
+   Card Colors (static — Tailwind safe)
+   ======================================== */
+.card-rose { background: linear-gradient(135deg, rgba(244,63,94,0.2), rgba(136,19,55,0.1)); border: 1px solid rgba(244,63,94,0.3); }
+.card-amber { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(120,53,15,0.1)); border: 1px solid rgba(245,158,11,0.3); }
+.card-emerald { background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,78,59,0.1)); border: 1px solid rgba(16,185,129,0.3); }
+.card-sky { background: linear-gradient(135deg, rgba(14,165,233,0.2), rgba(12,74,110,0.1)); border: 1px solid rgba(14,165,233,0.3); }
+.card-violet { background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(76,29,149,0.1)); border: 1px solid rgba(139,92,246,0.3); }
+.card-pink { background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(131,24,67,0.1)); border: 1px solid rgba(236,72,153,0.3); }
+.card-cyan { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(22,78,99,0.1)); border: 1px solid rgba(6,182,212,0.3); }
+.card-orange { background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(124,45,18,0.1)); border: 1px solid rgba(249,115,22,0.3); }
+.card-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(49,46,129,0.1)); border: 1px solid rgba(99,102,241,0.3); }
+.card-teal { background: linear-gradient(135deg, rgba(20,184,166,0.2), rgba(19,78,74,0.1)); border: 1px solid rgba(20,184,166,0.3); }
+.card-fuchsia { background: linear-gradient(135deg, rgba(217,70,239,0.2), rgba(112,26,117,0.1)); border: 1px solid rgba(217,70,239,0.3); }
+
+.tag-rose { background: rgba(244,63,94,0.2); color: #fda4af; }
+.tag-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
+.tag-emerald { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+.tag-sky { background: rgba(14,165,233,0.2); color: #7dd3fc; }
+.tag-violet { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+.tag-pink { background: rgba(236,72,153,0.2); color: #f9a8d4; }
+.tag-cyan { background: rgba(6,182,212,0.2); color: #67e8f9; }
+.tag-orange { background: rgba(249,115,22,0.2); color: #fdba74; }
+.tag-indigo { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+.tag-teal { background: rgba(20,184,166,0.2); color: #5eead4; }
+.tag-fuchsia { background: rgba(217,70,239,0.2); color: #f0abfc; }
+
+/* ========================================
    Custom Scrollbar
    ======================================== */
 ::-webkit-scrollbar {

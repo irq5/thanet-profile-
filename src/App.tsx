@@ -4,17 +4,17 @@ import { useEffect, useRef, useState } from 'react'
    Color Palette for Cards
    ======================================== */
 const cardColors = [
-  { bg: 'from-rose-500/20 to-rose-900/10', border: 'border-rose-500/30', tag: 'bg-rose-500/20 text-rose-300' },
-  { bg: 'from-amber-500/20 to-amber-900/10', border: 'border-amber-500/30', tag: 'bg-amber-500/20 text-amber-300' },
-  { bg: 'from-emerald-500/20 to-emerald-900/10', border: 'border-emerald-500/30', tag: 'bg-emerald-500/20 text-emerald-300' },
-  { bg: 'from-sky-500/20 to-sky-900/10', border: 'border-sky-500/30', tag: 'bg-sky-500/20 text-sky-300' },
-  { bg: 'from-violet-500/20 to-violet-900/10', border: 'border-violet-500/30', tag: 'bg-violet-500/20 text-violet-300' },
-  { bg: 'from-pink-500/20 to-pink-900/10', border: 'border-pink-500/30', tag: 'bg-pink-500/20 text-pink-300' },
-  { bg: 'from-cyan-500/20 to-cyan-900/10', border: 'border-cyan-500/30', tag: 'bg-cyan-500/20 text-cyan-300' },
-  { bg: 'from-orange-500/20 to-orange-900/10', border: 'border-orange-500/30', tag: 'bg-orange-500/20 text-orange-300' },
-  { bg: 'from-indigo-500/20 to-indigo-900/10', border: 'border-indigo-500/30', tag: 'bg-indigo-500/20 text-indigo-300' },
-  { bg: 'from-teal-500/20 to-teal-900/10', border: 'border-teal-500/30', tag: 'bg-teal-500/20 text-teal-300' },
-  { bg: 'from-fuchsia-500/20 to-fuchsia-900/10', border: 'border-fuchsia-500/30', tag: 'bg-fuchsia-500/20 text-fuchsia-300' },
+  { card: 'card-rose', tag: 'tag-rose' },
+  { card: 'card-amber', tag: 'tag-amber' },
+  { card: 'card-emerald', tag: 'tag-emerald' },
+  { card: 'card-sky', tag: 'tag-sky' },
+  { card: 'card-violet', tag: 'tag-violet' },
+  { card: 'card-pink', tag: 'tag-pink' },
+  { card: 'card-cyan', tag: 'tag-cyan' },
+  { card: 'card-orange', tag: 'tag-orange' },
+  { card: 'card-indigo', tag: 'tag-indigo' },
+  { card: 'card-teal', tag: 'tag-teal' },
+  { card: 'card-fuchsia', tag: 'tag-fuchsia' },
 ]
 
 /* ========================================
@@ -172,7 +172,8 @@ function Projects() {
         </p>
       </RevealOnScroll>
 
-      <div className="grid gap-8 md:grid-cols-2">
+      {/* Grid: 1 col mobile, 2 cols desktop */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
           <FlipCard key={i} project={project} colorIndex={i} />
         ))}
@@ -191,24 +192,14 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
   return (
     <RevealOnScroll>
       <div
-        className="flip-card-container cursor-pointer"
+        className={`flip-container ${flipped ? 'flipped' : ''} cursor-pointer`}
         onClick={() => setFlipped(!flipped)}
-        style={{ perspective: '1200px' }}
       >
-        <div
-          className={`flip-card-inner relative w-full transition-transform duration-700`}
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-            minHeight: '380px',
-          }}
-        >
+        <div className="flip-inner">
           {/* ========== FRONT SIDE ========== */}
           <div
-            className={`flip-card-front absolute inset-0 rounded-3xl p-8 flex flex-col items-center justify-center text-center overflow-hidden border bg-gradient-to-br ${colors.bg} ${colors.border} backdrop-blur-sm`}
-            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+            className={`flip-face ${colors.card} flex flex-col items-center justify-center text-center p-8`}
           >
-            {/* Client Name — Main Header */}
             <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
               Client
             </span>
@@ -219,7 +210,6 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               {project.client}
             </h3>
 
-            {/* Project Name */}
             <div className="mt-6">
               <span className="text-xs font-bold uppercase tracking-widest text-white/40">
                 Project
@@ -229,7 +219,6 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               </h4>
             </div>
 
-            {/* Click hint */}
             <span className="absolute bottom-4 text-[10px] text-white/30 uppercase tracking-widest">
               Click to flip →
             </span>
@@ -237,14 +226,8 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
 
           {/* ========== BACK SIDE ========== */}
           <div
-            className={`flip-card-back absolute inset-0 rounded-3xl p-8 flex flex-col overflow-hidden border bg-gradient-to-br ${colors.bg} ${colors.border} backdrop-blur-sm`}
-            style={{
-              backfaceVisibility: 'hidden',
-              WebkitBackfaceVisibility: 'hidden',
-              transform: 'rotateY(180deg)',
-            }}
+            className={`flip-face flip-back ${colors.card} flex flex-col p-8`}
           >
-            {/* Title */}
             <div className="mb-4">
               <h3
                 className="text-xl font-bold text-white"
@@ -255,12 +238,10 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               <p className="text-xs text-white/50 mt-1">{project.client}</p>
             </div>
 
-            {/* Description */}
             <p className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
               {project.description}
             </p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag, j) => (
                 <span
@@ -272,7 +253,6 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               ))}
             </div>
 
-            {/* GitHub link if available */}
             {project.github && (
               <a
                 href={project.github}
@@ -285,7 +265,6 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               </a>
             )}
 
-            {/* Click hint */}
             <span className="absolute bottom-4 right-4 text-[10px] text-white/30 uppercase tracking-widest">
               ← Click to flip back
             </span>
