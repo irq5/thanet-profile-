@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* ========================================
-   CSS Variables — Color Theme (HSL)
-   ======================================== */
 :root {
   --background: 201 100% 13%;
   --foreground: 0 0% 100%;
@@ -14,15 +11,10 @@
   --accent: 0 0% 10%;
   --border: 0 0% 18%;
   --input: 0 0% 18%;
-
-  /* Font Variables */
   --font-display: 'Instrument Serif', serif;
   --font-body: 'Inter', sans-serif;
 }
 
-/* ========================================
-   Base Styles
-   ======================================== */
 *,
 *::before,
 *::after {
@@ -44,7 +36,7 @@ body {
 }
 
 /* ========================================
-   Liquid Glass Effect
+   Liquid Glass
    ======================================== */
 .liquid-glass {
   background: rgba(255, 255, 255, 0.01);
@@ -81,21 +73,18 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-rise {
-  animation: fade-rise 0.8s ease-out both;
+.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+
+/* Hover shake for cards */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
 }
 
-.animate-fade-rise-delay {
-  animation: fade-rise 0.8s ease-out 0.2s both;
-}
-
-.animate-fade-rise-delay-2 {
-  animation: fade-rise 0.8s ease-out 0.4s both;
-}
-
-/* ========================================
-   Scroll-triggered Animations
-   ======================================== */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -108,7 +97,7 @@ body {
 }
 
 /* ========================================
-   Flip Card (3D transform — CSS only)
+   Flip Card (CSS-only 3D transform)
    ======================================== */
 .flip-container {
   perspective: 1200px;
@@ -126,6 +115,11 @@ body {
   transform: rotateY(180deg);
 }
 
+/* Hover shake — only when NOT flipped */
+.flip-container:not(.flipped):hover .flip-inner {
+  animation: shake 0.4s ease-in-out;
+}
+
 .flip-face {
   position: absolute;
   inset: 0;
@@ -140,45 +134,33 @@ body {
 }
 
 /* ========================================
-   Card Colors (static — Tailwind safe)
+   Card Colors — Solid gradients with visible backgrounds
    ======================================== */
-.card-rose { background: linear-gradient(135deg, rgba(244,63,94,0.2), rgba(136,19,55,0.1)); border: 1px solid rgba(244,63,94,0.3); }
-.card-amber { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(120,53,15,0.1)); border: 1px solid rgba(245,158,11,0.3); }
-.card-emerald { background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,78,59,0.1)); border: 1px solid rgba(16,185,129,0.3); }
-.card-sky { background: linear-gradient(135deg, rgba(14,165,233,0.2), rgba(12,74,110,0.1)); border: 1px solid rgba(14,165,233,0.3); }
-.card-violet { background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(76,29,149,0.1)); border: 1px solid rgba(139,92,246,0.3); }
-.card-pink { background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(131,24,67,0.1)); border: 1px solid rgba(236,72,153,0.3); }
-.card-cyan { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(22,78,99,0.1)); border: 1px solid rgba(6,182,212,0.3); }
-.card-orange { background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(124,45,18,0.1)); border: 1px solid rgba(249,115,22,0.3); }
-.card-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(49,46,129,0.1)); border: 1px solid rgba(99,102,241,0.3); }
-.card-teal { background: linear-gradient(135deg, rgba(20,184,166,0.2), rgba(19,78,74,0.1)); border: 1px solid rgba(20,184,166,0.3); }
-.card-fuchsia { background: linear-gradient(135deg, rgba(217,70,239,0.2), rgba(112,26,117,0.1)); border: 1px solid rgba(217,70,239,0.3); }
+.card-rose { background: linear-gradient(135deg, rgba(244,63,94,0.35), rgba(136,19,55,0.25)); border: 1px solid rgba(244,63,94,0.4); }
+.card-amber { background: linear-gradient(135deg, rgba(245,158,11,0.35), rgba(120,53,15,0.25)); border: 1px solid rgba(245,158,11,0.4); }
+.card-emerald { background: linear-gradient(135deg, rgba(16,185,129,0.35), rgba(6,78,59,0.25)); border: 1px solid rgba(16,185,129,0.4); }
+.card-sky { background: linear-gradient(135deg, rgba(14,165,233,0.35), rgba(12,74,110,0.25)); border: 1px solid rgba(14,165,233,0.4); }
+.card-violet { background: linear-gradient(135deg, rgba(139,92,246,0.35), rgba(76,29,149,0.25)); border: 1px solid rgba(139,92,246,0.4); }
+.card-pink { background: linear-gradient(135deg, rgba(236,72,153,0.35), rgba(131,24,67,0.25)); border: 1px solid rgba(236,72,153,0.4); }
+.card-cyan { background: linear-gradient(135deg, rgba(6,182,212,0.35), rgba(22,78,99,0.25)); border: 1px solid rgba(6,182,212,0.4); }
+.card-orange { background: linear-gradient(135deg, rgba(249,115,22,0.35), rgba(124,45,18,0.25)); border: 1px solid rgba(249,115,22,0.4); }
+.card-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(49,46,129,0.25)); border: 1px solid rgba(99,102,241,0.4); }
+.card-teal { background: linear-gradient(135deg, rgba(20,184,166,0.35), rgba(19,78,74,0.25)); border: 1px solid rgba(20,184,166,0.4); }
+.card-fuchsia { background: linear-gradient(135deg, rgba(217,70,239,0.35), rgba(112,26,117,0.25)); border: 1px solid rgba(217,70,239,0.4); }
 
-.tag-rose { background: rgba(244,63,94,0.2); color: #fda4af; }
-.tag-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
-.tag-emerald { background: rgba(16,185,129,0.2); color: #6ee7b7; }
-.tag-sky { background: rgba(14,165,233,0.2); color: #7dd3fc; }
-.tag-violet { background: rgba(139,92,246,0.2); color: #c4b5fd; }
-.tag-pink { background: rgba(236,72,153,0.2); color: #f9a8d4; }
-.tag-cyan { background: rgba(6,182,212,0.2); color: #67e8f9; }
-.tag-orange { background: rgba(249,115,22,0.2); color: #fdba74; }
-.tag-indigo { background: rgba(99,102,241,0.2); color: #a5b4fc; }
-.tag-teal { background: rgba(20,184,166,0.2); color: #5eead4; }
-.tag-fuchsia { background: rgba(217,70,239,0.2); color: #f0abfc; }
+.tag-rose { background: rgba(244,63,94,0.25); color: #fda4af; }
+.tag-amber { background: rgba(245,158,11,0.25); color: #fcd34d; }
+.tag-emerald { background: rgba(16,185,129,0.25); color: #6ee7b7; }
+.tag-sky { background: rgba(14,165,233,0.25); color: #7dd3fc; }
+.tag-violet { background: rgba(139,92,246,0.25); color: #c4b5fd; }
+.tag-pink { background: rgba(236,72,153,0.25); color: #f9a8d4; }
+.tag-cyan { background: rgba(6,182,212,0.25); color: #67e8f9; }
+.tag-orange { background: rgba(249,115,22,0.25); color: #fdba74; }
+.tag-indigo { background: rgba(99,102,241,0.25); color: #a5b4fc; }
+.tag-teal { background: rgba(20,184,166,0.25); color: #5eead4; }
+.tag-fuchsia { background: rgba(217,70,239,0.25); color: #f0abfc; }
 
-/* ========================================
-   Custom Scrollbar
-   ======================================== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--border));
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }

@@ -219,9 +219,7 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               </h4>
             </div>
 
-            <span className="absolute bottom-4 text-[10px] text-white/30 uppercase tracking-widest">
-              Click to flip →
-            </span>
+
           </div>
 
           {/* ========== BACK SIDE ========== */}
@@ -265,9 +263,7 @@ function FlipCard({ project, colorIndex }: { project: typeof projects[number]; c
               </a>
             )}
 
-            <span className="absolute bottom-4 right-4 text-[10px] text-white/30 uppercase tracking-widest">
-              ← Click to flip back
-            </span>
+
           </div>
         </div>
       </div>
