@@ -1,33 +1,61 @@
 import { useEffect, useRef } from 'react'
 
 /* ========================================
+   Color Palette for Cards
+   ======================================== */
+const cardColors = [
+  'from-rose-500/20 to-rose-900/10 border-rose-500/30',
+  'from-amber-500/20 to-amber-900/10 border-amber-500/30',
+  'from-emerald-500/20 to-emerald-900/10 border-emerald-500/30',
+  'from-sky-500/20 to-sky-900/10 border-sky-500/30',
+  'from-violet-500/20 to-violet-900/10 border-violet-500/30',
+  'from-pink-500/20 to-pink-900/10 border-pink-500/30',
+  'from-cyan-500/20 to-cyan-900/10 border-cyan-500/30',
+  'from-orange-500/20 to-orange-900/10 border-orange-500/30',
+  'from-indigo-500/20 to-indigo-900/10 border-indigo-500/30',
+  'from-teal-500/20 to-teal-900/10 border-teal-500/30',
+  'from-fuchsia-500/20 to-fuchsia-900/10 border-fuchsia-500/30',
+]
+
+const tagColors = [
+  'bg-rose-500/20 text-rose-300',
+  'bg-amber-500/20 text-amber-300',
+  'bg-emerald-500/20 text-emerald-300',
+  'bg-sky-500/20 text-sky-300',
+  'bg-violet-500/20 text-violet-300',
+  'bg-pink-500/20 text-pink-300',
+  'bg-cyan-500/20 text-cyan-300',
+  'bg-orange-500/20 text-orange-300',
+  'bg-indigo-500/20 text-indigo-300',
+  'bg-teal-500/20 text-teal-300',
+  'bg-fuchsia-500/20 text-fuchsia-300',
+]
+
+/* ========================================
    Navigation Bar
    ======================================== */
 function Navbar() {
   return (
     <nav className="relative z-10 flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-      {/* Logo */}
       <a
         href="#"
-        className="text-3xl tracking-tight text-[hsl(var(--foreground))]"
+        className="text-3xl tracking-tight text-white"
         style={{ fontFamily: 'var(--font-display)' }}
       >
         Thanet<sup className="text-xs">®</sup>
       </a>
 
-      {/* Nav Links (hidden on mobile) */}
       <div className="hidden md:flex gap-8 items-center">
-        <a href="#hero" className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors">Home</a>
-        <a href="#projects" className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors">Projects</a>
-        <a href="#experience" className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors">Experience</a>
-        <a href="#stack" className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors">Stack</a>
-        <a href="#contact" className="text-sm text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors">Contact</a>
+        <a href="#hero" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
+        <a href="#projects" className="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+        <a href="#experience" className="text-sm text-white/60 hover:text-white transition-colors">Experience</a>
+        <a href="#stack" className="text-sm text-white/60 hover:text-white transition-colors">Stack</a>
+        <a href="#contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
       </div>
 
-      {/* CTA Button */}
       <a
         href="#contact"
-        className="liquid-glass rounded-full px-6 py-2.5 text-sm text-[hsl(var(--foreground))] hover:scale-[1.03] transition-transform"
+        className="liquid-glass rounded-full px-6 py-2.5 text-sm text-white hover:scale-[1.03] transition-transform"
       >
         Begin Journey
       </a>
@@ -41,31 +69,28 @@ function Navbar() {
 function Hero() {
   return (
     <section id="hero" className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40 py-[90px]">
-      {/* H1 with staggered words */}
       <h1
-        className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal animate-fade-rise"
+        className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal animate-fade-rise text-white"
         style={{ fontFamily: 'var(--font-display)' }}
       >
         Where{' '}
-        <em className="not-italic text-[hsl(var(--muted-foreground))]">dreams</em>{' '}
+        <em className="not-italic text-white/40">dreams</em>{' '}
         rise{' '}
-        <em className="not-italic text-[hsl(var(--muted-foreground))]">through the silence.</em>
+        <em className="not-italic text-white/40">through the silence.</em>
       </h1>
 
-      {/* Subtext */}
-      <p className="text-[hsl(var(--muted-foreground))] text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
+      <p className="text-white/50 text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
         30+ years of production experience building systems for millions of users.
         From telecom giants to national auctions, from AI platforms to developer tools.
         <br /><br />
-        <span className="text-[hsl(var(--foreground))]">
+        <span className="text-white">
           Senior Software Engineer & System Architect
         </span>
       </p>
 
-      {/* CTA Button */}
       <a
         href="#projects"
-        className="liquid-glass rounded-full px-14 py-5 text-base text-[hsl(var(--foreground))] mt-12 hover:scale-[1.03] transition-transform cursor-pointer animate-fade-rise-delay-2"
+        className="liquid-glass rounded-full px-14 py-5 text-base text-white mt-12 hover:scale-[1.03] transition-transform cursor-pointer animate-fade-rise-delay-2"
       >
         View My Work
       </a>
@@ -88,7 +113,7 @@ const projects = [
     client: 'AIS (Advanced Info Service)',
     name: 'Enterprise Application Suite',
     quarter: '2008–Present',
-    description: '15+ production applications for Thailand\'s #1 telecom. Including: AIS Gamification (loyalty platform), AIS IKM (knowledge management), AIS e-Service, AIS Movie Store, AIS MY Partner, AIS Good Number, AIS FBB, and more.',
+    description: "15+ production applications for Thailand's #1 telecom. Including: AIS Gamification (loyalty platform), AIS IKM (knowledge management), AIS e-Service, AIS Movie Store, AIS MY Partner, AIS Good Number, AIS FBB, and more.",
     tags: ['React', 'Node.js', 'Gamification', 'CRM', 'Microservices'],
   },
   {
@@ -152,7 +177,7 @@ const projects = [
     client: 'Better Way (Mistine)',
     name: 'Mobile Application',
     quarter: 'Q3 2026',
-    description: 'Mobile application for Thailand\'s leading cosmetics brand. Consumer-facing app with product catalog, e-commerce features, and brand engagement.',
+    description: "Mobile application for Thailand's leading cosmetics brand. Consumer-facing app with product catalog, e-commerce features, and brand engagement.",
     tags: ['Mobile', 'E-commerce', 'Consumer App'],
   },
 ]
@@ -162,58 +187,73 @@ function Projects() {
     <section id="projects" className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
       <RevealOnScroll>
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-4"
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-4 text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Selected Work
         </h2>
-        <p className="text-[hsl(var(--muted-foreground))] text-center max-w-2xl mx-auto mb-16">
+        <p className="text-white/40 text-center max-w-2xl mx-auto mb-16">
           Real systems, real clients, real impact. Each project shipped to production and used by thousands — or millions — of people.
         </p>
       </RevealOnScroll>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project, i) => (
-          <ProjectCard key={i} project={project} />
+          <ProjectCard key={i} project={project} colorIndex={i} />
         ))}
       </div>
     </section>
   )
 }
 
-function ProjectCard({ project }: { project: typeof projects[number] }) {
+function ProjectCard({ project, colorIndex }: { project: typeof projects[number]; colorIndex: number }) {
+  const colorClass = cardColors[colorIndex % cardColors.length]
+  const tagColorClass = tagColors[colorIndex % tagColors.length]
+
   return (
     <RevealOnScroll>
-      <div className="liquid-glass rounded-2xl p-6 h-full flex flex-col hover:scale-[1.02] transition-transform">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-3">
-          <span className="text-xs font-medium text-[hsl(var(--muted-foreground))] uppercase tracking-wider">
-            {project.client}
+      <div className={`relative rounded-3xl p-8 h-full flex flex-col overflow-hidden border bg-gradient-to-br ${colorClass} backdrop-blur-sm hover:scale-[1.02] transition-all duration-300`}>
+        {/* Large Client Name */}
+        <div className="mb-4">
+          <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+            Client
           </span>
-          <span className="text-xs text-[hsl(var(--muted-foreground))]">
+          <h3
+            className="text-2xl sm:text-3xl font-bold text-white mt-1"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            {project.client}
+          </h3>
+        </div>
+
+        {/* Project Name */}
+        <div className="mb-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+            Project
+          </span>
+          <h4 className="text-lg font-semibold text-white/90 mt-1">
+            {project.name}
+          </h4>
+        </div>
+
+        {/* Period */}
+        <div className="mb-4">
+          <span className="text-xs font-medium text-white/50">
             {project.quarter}
           </span>
         </div>
 
-        {/* Title */}
-        <h3
-          className="text-xl font-semibold text-[hsl(var(--foreground))] mb-3"
-          style={{ fontFamily: 'var(--font-display)' }}
-        >
-          {project.name}
-        </h3>
-
         {/* Description */}
-        <p className="text-sm text-[hsl(var(--muted-foreground))] leading-relaxed mb-4 flex-1">
+        <p className="text-sm text-white/60 leading-relaxed mb-5 flex-1">
           {project.description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-3">
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, j) => (
             <span
               key={j}
-              className="text-[10px] px-2 py-0.5 rounded-full bg-[hsl(var(--foreground)/0.06)] text-[hsl(var(--muted-foreground))] font-medium"
+              className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${tagColorClass}`}
             >
               {tag}
             </span>
@@ -226,7 +266,7 @@ function ProjectCard({ project }: { project: typeof projects[number] }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-[hsl(var(--foreground))] hover:underline mt-auto"
+            className="text-xs text-white/70 hover:text-white mt-auto inline-flex items-center gap-1"
           >
             View on GitHub →
           </a>
@@ -245,7 +285,7 @@ const experiences = [
     role: 'System Architect & Senior Developer',
     company: 'Wisdom Waste Co., Ltd. / Independent',
     highlights: [
-      '15+ production applications for AIS (Thailand\'s #1 telecom)',
+      "15+ production applications for AIS (Thailand's #1 telecom)",
       'NBTC Digital TV Spectrum Auction — national-scale real-time system',
       'Ministry of Finance — Off-Budget Accounting System',
       'Built MCP-integrated developer tool with 31 tools',
@@ -275,32 +315,32 @@ function Experience() {
     <section id="experience" className="relative z-10 px-6 py-20 max-w-5xl mx-auto">
       <RevealOnScroll>
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-16"
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-16 text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Experience
         </h2>
       </RevealOnScroll>
 
-      <div className="space-y-12">
+      <div className="space-y-8">
         {experiences.map((exp, i) => (
           <RevealOnScroll key={i}>
-            <div className="liquid-glass rounded-2xl p-8">
+            <div className="relative rounded-3xl p-8 overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-semibold" style={{ fontFamily: 'var(--font-display)' }}>
+                  <h3 className="text-xl font-semibold text-white" style={{ fontFamily: 'var(--font-display)' }}>
                     {exp.role}
                   </h3>
-                  <p className="text-sm text-[hsl(var(--muted-foreground))]">{exp.company}</p>
+                  <p className="text-sm text-white/50">{exp.company}</p>
                 </div>
-                <span className="text-xs font-medium text-[hsl(var(--muted-foreground))] mt-2 sm:mt-0">
+                <span className="text-xs font-medium text-white/40 mt-2 sm:mt-0">
                   {exp.period}
                 </span>
               </div>
               <ul className="space-y-2">
                 {exp.highlights.map((h, j) => (
-                  <li key={j} className="text-sm text-[hsl(var(--muted-foreground))] flex items-start gap-2">
-                    <span className="text-[hsl(var(--foreground))] mt-1.5">•</span>
+                  <li key={j} className="text-sm text-white/60 flex items-start gap-2">
+                    <span className="text-white/40 mt-1.5">•</span>
                     {h}
                   </li>
                 ))}
@@ -348,7 +388,7 @@ function Stack() {
     <section id="stack" className="relative z-10 px-6 py-20 max-w-6xl mx-auto">
       <RevealOnScroll>
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-16"
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-16 text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Technical Stack
@@ -358,9 +398,9 @@ function Stack() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {stackCategories.map((cat, i) => (
           <RevealOnScroll key={i}>
-            <div className="liquid-glass rounded-2xl p-6">
+            <div className="relative rounded-3xl p-6 overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm h-full">
               <h3
-                className="text-lg font-semibold mb-4 text-[hsl(var(--foreground))]"
+                className="text-lg font-semibold mb-4 text-white"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 {cat.title}
@@ -369,7 +409,7 @@ function Stack() {
                 {cat.items.map((item, j) => (
                   <span
                     key={j}
-                    className="text-xs px-3 py-1 rounded-full bg-[hsl(var(--foreground)/0.06)] text-[hsl(var(--muted-foreground))]"
+                    className="text-xs px-3 py-1.5 rounded-full bg-white/10 text-white/70 font-medium"
                   >
                     {item}
                   </span>
@@ -391,25 +431,25 @@ function Contact() {
     <section id="contact" className="relative z-10 px-6 py-20 max-w-3xl mx-auto text-center">
       <RevealOnScroll>
         <h2
-          className="text-4xl sm:text-5xl md:text-6xl tracking-tight mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight mb-6 text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
           Let's Build Together
         </h2>
-        <p className="text-[hsl(var(--muted-foreground))] max-w-xl mx-auto mb-10">
+        <p className="text-white/40 max-w-xl mx-auto mb-10">
           Open to consulting, architecture reviews, and ambitious projects that need someone who's been shipping production code since 2004.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="mailto:taned.ar@inspektion.co.th"
-            className="liquid-glass rounded-full px-10 py-4 text-[hsl(var(--foreground))] hover:scale-[1.03] transition-transform"
+            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
           >
             taned.ar@inspektion.co.th
           </a>
           <a
             href="tel:+66902693428"
-            className="liquid-glass rounded-full px-10 py-4 text-[hsl(var(--foreground))] hover:scale-[1.03] transition-transform"
+            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
           >
             +66 90 269 3428
           </a>
@@ -455,9 +495,9 @@ function RevealOnScroll({ children, className }: { children: React.ReactNode; cl
    ======================================== */
 function Footer() {
   return (
-    <footer className="relative z-10 border-t border-[hsl(var(--border))] py-8 px-6 text-center">
-      <p className="text-xs text-[hsl(var(--muted-foreground))]">
-        © {new Date().getFullYear()} Thanet Arnont. Built with Next.js, React, TypeScript.
+    <footer className="relative z-10 border-t border-white/10 py-8 px-6 text-center">
+      <p className="text-xs text-white/30">
+        © {new Date().getFullYear()} Thanet Arnont. Built with React, TypeScript, Vite.
       </p>
     </footer>
   )
@@ -481,8 +521,7 @@ function VideoBackground() {
           type="video/mp4"
         />
       </video>
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-[hsl(var(--background)/0.6)]" />
+      <div className="absolute inset-0 bg-[hsl(var(--background)/0.7)]" />
     </div>
   )
 }
