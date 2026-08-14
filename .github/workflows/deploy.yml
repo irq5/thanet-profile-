@@ -27,8 +27,6 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-
-      # Copy index.html to 404.html for SPA routing fallback (optional but recommended)
       - run: cp dist/index.html dist/404.html
 
       - uses: actions/upload-pages-artifact@v3
