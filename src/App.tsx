@@ -1,34 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /* ========================================
    Color Palette for Cards
    ======================================== */
 const cardColors = [
-  'from-rose-500/20 to-rose-900/10 border-rose-500/30',
-  'from-amber-500/20 to-amber-900/10 border-amber-500/30',
-  'from-emerald-500/20 to-emerald-900/10 border-emerald-500/30',
-  'from-sky-500/20 to-sky-900/10 border-sky-500/30',
-  'from-violet-500/20 to-violet-900/10 border-violet-500/30',
-  'from-pink-500/20 to-pink-900/10 border-pink-500/30',
-  'from-cyan-500/20 to-cyan-900/10 border-cyan-500/30',
-  'from-orange-500/20 to-orange-900/10 border-orange-500/30',
-  'from-indigo-500/20 to-indigo-900/10 border-indigo-500/30',
-  'from-teal-500/20 to-teal-900/10 border-teal-500/30',
-  'from-fuchsia-500/20 to-fuchsia-900/10 border-fuchsia-500/30',
-]
-
-const tagColors = [
-  'bg-rose-500/20 text-rose-300',
-  'bg-amber-500/20 text-amber-300',
-  'bg-emerald-500/20 text-emerald-300',
-  'bg-sky-500/20 text-sky-300',
-  'bg-violet-500/20 text-violet-300',
-  'bg-pink-500/20 text-pink-300',
-  'bg-cyan-500/20 text-cyan-300',
-  'bg-orange-500/20 text-orange-300',
-  'bg-indigo-500/20 text-indigo-300',
-  'bg-teal-500/20 text-teal-300',
-  'bg-fuchsia-500/20 text-fuchsia-300',
+  { bg: 'from-rose-500/20 to-rose-900/10', border: 'border-rose-500/30', tag: 'bg-rose-500/20 text-rose-300' },
+  { bg: 'from-amber-500/20 to-amber-900/10', border: 'border-amber-500/30', tag: 'bg-amber-500/20 text-amber-300' },
+  { bg: 'from-emerald-500/20 to-emerald-900/10', border: 'border-emerald-500/30', tag: 'bg-emerald-500/20 text-emerald-300' },
+  { bg: 'from-sky-500/20 to-sky-900/10', border: 'border-sky-500/30', tag: 'bg-sky-500/20 text-sky-300' },
+  { bg: 'from-violet-500/20 to-violet-900/10', border: 'border-violet-500/30', tag: 'bg-violet-500/20 text-violet-300' },
+  { bg: 'from-pink-500/20 to-pink-900/10', border: 'border-pink-500/30', tag: 'bg-pink-500/20 text-pink-300' },
+  { bg: 'from-cyan-500/20 to-cyan-900/10', border: 'border-cyan-500/30', tag: 'bg-cyan-500/20 text-cyan-300' },
+  { bg: 'from-orange-500/20 to-orange-900/10', border: 'border-orange-500/30', tag: 'bg-orange-500/20 text-orange-300' },
+  { bg: 'from-indigo-500/20 to-indigo-900/10', border: 'border-indigo-500/30', tag: 'bg-indigo-500/20 text-indigo-300' },
+  { bg: 'from-teal-500/20 to-teal-900/10', border: 'border-teal-500/30', tag: 'bg-teal-500/20 text-teal-300' },
+  { bg: 'from-fuchsia-500/20 to-fuchsia-900/10', border: 'border-fuchsia-500/30', tag: 'bg-fuchsia-500/20 text-fuchsia-300' },
 ]
 
 /* ========================================
@@ -105,28 +91,24 @@ const projects = [
   {
     client: 'NBTC (กสทช.)',
     name: 'Digital TV Spectrum Auction',
-    quarter: 'Q3 2026',
     description: 'National-scale real-time auction platform for digital TV spectrum licensing. Multi-bidder WebSocket engine with sub-second bidding, state machine lifecycle, and government-grade audit trail.',
     tags: ['Next.js', 'TypeScript', 'WebSockets', 'RBAC', 'State Machine'],
   },
   {
     client: 'AIS (Advanced Info Service)',
     name: 'Enterprise Application Suite',
-    quarter: '2008–Present',
     description: "15+ production applications for Thailand's #1 telecom. Including: AIS Gamification (loyalty platform), AIS IKM (knowledge management), AIS e-Service, AIS Movie Store, AIS MY Partner, AIS Good Number, AIS FBB, and more.",
     tags: ['React', 'Node.js', 'Gamification', 'CRM', 'Microservices'],
   },
   {
     client: 'Ministry of Finance (Thailand)',
     name: 'Off-Budget Accounting System',
-    quarter: 'Q3 2026',
     description: 'Government financial management and reporting system for non-budgetary funds. Handles complex fund tracking, multi-level approval workflows, and regulatory compliance reporting.',
     tags: ['Enterprise', 'Government', 'Compliance', 'Workflow'],
   },
   {
     client: 'Self-Initiated',
     name: 'Programming Visualize (MongoModel)',
-    quarter: 'Q3 2026',
     description: 'Visual MongoDB schema designer with drag-and-drop canvas, MCP server (31 tools), 8-format code generation, 3D workflow visualization, and workspace-wide linting — built for teams who think in Thai.',
     tags: ['Next.js 16', 'React 19', 'MCP', 'TypeScript', 'AI Collaboration'],
     github: 'https://github.com/jaturapornchai/mongomodeleditor',
@@ -134,49 +116,42 @@ const projects = [
   {
     client: 'Self-Initiated',
     name: 'Hauction — Hybrid Auction Platform',
-    quarter: 'Q3 2026',
     description: 'Multi-shop auction platform supporting both Event-Based (Live) and Long-Term (Marketplace) types. Features 5-role RBAC, WebSocket bidding, Meta design system, and full Thai Baht localization.',
     tags: ['Next.js', 'better-sqlite3', 'RBAC', 'Real-time'],
   },
   {
     client: 'Krungthai Bank',
     name: 'Treasury Risk Management System',
-    quarter: '2007–2008',
     description: 'Financial risk analysis and reporting system for treasury operations. Handles complex risk calculations, regulatory reporting, and multi-level approval workflows.',
     tags: ['Banking', 'Finance', 'Risk Analysis', 'Enterprise'],
   },
   {
     client: 'DTAC (Total Access Communication)',
     name: 'Service Integration & R&D',
-    quarter: '2004–2007',
     description: 'Research and development of mobile network services. Studied global mobile technologies, integrated vendor test systems, and developed system connection interfaces.',
     tags: ['Telecom', 'R&D', 'Network Services', 'Integration'],
   },
   {
     client: 'Self-Initiated',
     name: 'SDLC_AI — AI-Driven SDLC Platform',
-    quarter: 'Q3 2026',
     description: 'Platform that guides software projects from requirements to deployment with AI-powered feedback at every stage. Multi-role GitLab OAuth integration with intelligent gap detection.',
     tags: ['AI', 'GitLab OAuth', 'Multi-Role', 'Workflow'],
   },
   {
     client: 'Self-Initiated',
     name: 'GitlabSelfhost — Migration & Inventory',
-    quarter: 'Q3 2026',
     description: 'Automated migration tool for self-hosted GitLab instances. Processed 1000+ projects with structured CSV schema, logic-based mapping, bulk operations, and data integrity preservation.',
     tags: ['GitLab REST API', 'CSV Schema', 'Bulk Migration', 'Data Validation'],
   },
   {
     client: 'Self-Initiated',
     name: 'Drawing Game — Realtime Multiplayer',
-    quarter: 'Q3 2026',
     description: 'Real-time multiplayer drawing and guessing game built as POC for AI-driven SDLC methodology. Features canvas synchronization, game state management, and rapid prototyping.',
     tags: ['Canvas API', 'WebSocket', 'Realtime', 'SDLC_AI'],
   },
   {
     client: 'Better Way (Mistine)',
     name: 'Mobile Application',
-    quarter: 'Q3 2026',
     description: "Mobile application for Thailand's leading cosmetics brand. Consumer-facing app with product catalog, e-commerce features, and brand engagement.",
     tags: ['Mobile', 'E-commerce', 'Consumer App'],
   },
@@ -199,78 +174,123 @@ function Projects() {
 
       <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project, i) => (
-          <ProjectCard key={i} project={project} colorIndex={i} />
+          <FlipCard key={i} project={project} colorIndex={i} />
         ))}
       </div>
     </section>
   )
 }
 
-function ProjectCard({ project, colorIndex }: { project: typeof projects[number]; colorIndex: number }) {
-  const colorClass = cardColors[colorIndex % cardColors.length]
-  const tagColorClass = tagColors[colorIndex % tagColors.length]
+/* ========================================
+   Flip Card Component
+   ======================================== */
+function FlipCard({ project, colorIndex }: { project: typeof projects[number]; colorIndex: number }) {
+  const [flipped, setFlipped] = useState(false)
+  const colors = cardColors[colorIndex % cardColors.length]
 
   return (
     <RevealOnScroll>
-      <div className={`relative rounded-3xl p-8 h-full flex flex-col overflow-hidden border bg-gradient-to-br ${colorClass} backdrop-blur-sm hover:scale-[1.02] transition-all duration-300`}>
-        {/* Large Client Name */}
-        <div className="mb-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-white/40">
-            Client
-          </span>
-          <h3
-            className="text-2xl sm:text-3xl font-bold text-white mt-1"
-            style={{ fontFamily: 'var(--font-display)' }}
+      <div
+        className="flip-card-container cursor-pointer"
+        onClick={() => setFlipped(!flipped)}
+        style={{ perspective: '1200px' }}
+      >
+        <div
+          className={`flip-card-inner relative w-full transition-transform duration-700`}
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+            minHeight: '380px',
+          }}
+        >
+          {/* ========== FRONT SIDE ========== */}
+          <div
+            className={`flip-card-front absolute inset-0 rounded-3xl p-8 flex flex-col items-center justify-center text-center overflow-hidden border bg-gradient-to-br ${colors.bg} ${colors.border} backdrop-blur-sm`}
+            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
           >
-            {project.client}
-          </h3>
-        </div>
-
-        {/* Project Name */}
-        <div className="mb-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-white/40">
-            Project
-          </span>
-          <h4 className="text-lg font-semibold text-white/90 mt-1">
-            {project.name}
-          </h4>
-        </div>
-
-        {/* Period */}
-        <div className="mb-4">
-          <span className="text-xs font-medium text-white/50">
-            {project.quarter}
-          </span>
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-white/60 leading-relaxed mb-5 flex-1">
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, j) => (
-            <span
-              key={j}
-              className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${tagColorClass}`}
-            >
-              {tag}
+            {/* Client Name — Main Header */}
+            <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+              Client
             </span>
-          ))}
-        </div>
+            <h3
+              className="text-3xl sm:text-4xl font-bold text-white leading-tight"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {project.client}
+            </h3>
 
-        {/* GitHub link if available */}
-        {project.github && (
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-white/70 hover:text-white mt-auto inline-flex items-center gap-1"
+            {/* Project Name */}
+            <div className="mt-6">
+              <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+                Project
+              </span>
+              <h4 className="text-lg font-semibold text-white/80 mt-2">
+                {project.name}
+              </h4>
+            </div>
+
+            {/* Click hint */}
+            <span className="absolute bottom-4 text-[10px] text-white/30 uppercase tracking-widest">
+              Click to flip →
+            </span>
+          </div>
+
+          {/* ========== BACK SIDE ========== */}
+          <div
+            className={`flip-card-back absolute inset-0 rounded-3xl p-8 flex flex-col overflow-hidden border bg-gradient-to-br ${colors.bg} ${colors.border} backdrop-blur-sm`}
+            style={{
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)',
+            }}
           >
-            View on GitHub →
-          </a>
-        )}
+            {/* Title */}
+            <div className="mb-4">
+              <h3
+                className="text-xl font-bold text-white"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {project.name}
+              </h3>
+              <p className="text-xs text-white/50 mt-1">{project.client}</p>
+            </div>
+
+            {/* Description */}
+            <p className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
+              {project.description}
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag, j) => (
+                <span
+                  key={j}
+                  className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${colors.tag}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* GitHub link if available */}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-white/70 hover:text-white inline-flex items-center gap-1"
+                onClick={(e) => e.stopPropagation()}
+              >
+                View on GitHub →
+              </a>
+            )}
+
+            {/* Click hint */}
+            <span className="absolute bottom-4 right-4 text-[10px] text-white/30 uppercase tracking-widest">
+              ← Click to flip back
+            </span>
+          </div>
+        </div>
       </div>
     </RevealOnScroll>
   )
