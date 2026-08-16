@@ -298,7 +298,7 @@ const experiences = [
   {
     period: '2008–Present',
     role: 'System Architect & Senior Developer',
-    company: 'Wisdom Waste Co., Ltd. / Independent',
+    company: 'Wisdom Vast Co., Ltd.',
     highlights: [
       "15+ production applications for AIS (Thailand's #1 telecom)",
       'NBTC Digital TV Spectrum Auction — national-scale real-time system',
