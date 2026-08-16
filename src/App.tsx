@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /* ========================================
    Color Palette for Cards
@@ -691,12 +691,192 @@ function VideoBackground() {
 }
 
 /* ========================================
+   Walking Cats — right-click anywhere to spawn one
+   Sprite sheet: 8 color variants in 4x2 blocks; each block is
+   3 walk frames x 4 direction rows (0 down, 1 left, 2 right, 3 up),
+   48px cells. More than 5 cats -> one flees off-screen every 5s.
+   ======================================== */
+const CAT_SHEET_URL = `${import.meta.env.BASE_URL}cats.png`
+const CAT_CELL = 48
+const CAT_SCALE = 2
+const CAT_RENDER = CAT_CELL * CAT_SCALE
+const CAT_VARIANTS = 8
+const CAT_WALK_FRAMES = [0, 1, 2, 1]
+const CAT_LIMIT = 5
+
+type CatSpawn = { id: number; variant: number; x: number; y: number; fleeing: boolean }
+
+function Cat({ cat, onGone }: { cat: CatSpawn; onGone: (id: number) => void }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const fleeingRef = useRef(cat.fleeing)
+  fleeingRef.current = cat.fleeing
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+
+    const s = {
+      x: cat.x,
+      y: cat.y,
+      dx: 0,
+      dy: 0,
+      dirRow: 0,
+      step: 0,
+      stepT: 0,
+      nextThink: 0,
+      fleeDx: 0,
+    }
+    let raf = 0
+    let last = performance.now()
+
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05)
+      last = now
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+
+      let speed = 45
+      if (fleeingRef.current) {
+        if (s.fleeDx === 0) {
+          s.fleeDx = s.x + CAT_RENDER / 2 < vw / 2 ? -1 : 1
+        }
+        s.dx = s.fleeDx
+        s.dy = 0
+        speed = 340
+      } else if (now >= s.nextThink) {
+        if (Math.random() < 0.3) {
+          s.dx = 0
+          s.dy = 0
+        } else {
+          const a = Math.random() * Math.PI * 2
+          s.dx = Math.cos(a)
+          s.dy = Math.sin(a)
+        }
+        s.nextThink = now + 1500 + Math.random() * 3000
+      }
+
+      s.x += s.dx * speed * dt
+      s.y += s.dy * speed * dt
+
+      if (!fleeingRef.current) {
+        if (s.x < 8) { s.x = 8; s.dx = Math.abs(s.dx) }
+        if (s.x > vw - CAT_RENDER - 8) { s.x = vw - CAT_RENDER - 8; s.dx = -Math.abs(s.dx) }
+        if (s.y < 8) { s.y = 8; s.dy = Math.abs(s.dy) }
+        if (s.y > vh - CAT_RENDER - 8) { s.y = vh - CAT_RENDER - 8; s.dy = -Math.abs(s.dy) }
+      } else if (s.x < -CAT_RENDER * 2 || s.x > vw + CAT_RENDER) {
+        onGone(cat.id)
+        return
+      }
+
+      const moving = s.dx !== 0 || s.dy !== 0
+      if (moving) {
+        s.dirRow = Math.abs(s.dx) >= Math.abs(s.dy) ? (s.dx > 0 ? 2 : 1) : (s.dy > 0 ? 0 : 3)
+        s.stepT += dt
+        if (s.stepT >= (fleeingRef.current ? 0.07 : 0.16)) {
+          s.stepT = 0
+          s.step = (s.step + 1) % CAT_WALK_FRAMES.length
+        }
+      }
+
+      const frameCol = moving ? CAT_WALK_FRAMES[s.step] : 1
+      const blockCol = cat.variant % 4
+      const blockRow = Math.floor(cat.variant / 4)
+      const bx = (blockCol * 3 + frameCol) * CAT_CELL * CAT_SCALE
+      const by = (blockRow * 4 + s.dirRow) * CAT_CELL * CAT_SCALE
+
+      el.style.transform = `translate(${s.x}px, ${s.y}px)`
+      el.style.backgroundPosition = `-${bx}px -${by}px`
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [cat.id, cat.variant, cat.x, cat.y, onGone])
+
+  return (
+    <div
+      ref={ref}
+      className="fixed left-0 top-0 z-50 pointer-events-none"
+      style={{
+        width: CAT_RENDER,
+        height: CAT_RENDER,
+        backgroundImage: `url(${CAT_SHEET_URL})`,
+        backgroundSize: `${12 * CAT_CELL * CAT_SCALE}px ${8 * CAT_CELL * CAT_SCALE}px`,
+        imageRendering: 'pixelated',
+        transform: `translate(${cat.x}px, ${cat.y}px)`,
+      }}
+    />
+  )
+}
+
+function Cats() {
+  const [cats, setCats] = useState<CatSpawn[]>([])
+  const nextId = useRef(1)
+
+  const spawn = useCallback((x: number, y: number) => {
+    setCats(prev => [
+      ...prev,
+      {
+        id: nextId.current++,
+        variant: Math.floor(Math.random() * CAT_VARIANTS),
+        x: Math.max(8, Math.min(x - CAT_RENDER / 2, window.innerWidth - CAT_RENDER - 8)),
+        y: Math.max(8, Math.min(y - CAT_RENDER / 2, window.innerHeight - CAT_RENDER - 8)),
+        fleeing: false,
+      },
+    ])
+  }, [])
+
+  useEffect(() => {
+    const onContextMenu = (e: MouseEvent) => {
+      e.preventDefault()
+      spawn(e.clientX, e.clientY)
+    }
+    window.addEventListener('contextmenu', onContextMenu)
+
+    // easter egg / test hook: ?cats=N pre-spawns N cats
+    const n = parseInt(new URLSearchParams(window.location.search).get('cats') || '0', 10)
+    for (let i = 0; i < Math.min(n, 12); i++) {
+      spawn(Math.random() * window.innerWidth, Math.random() * window.innerHeight)
+    }
+
+    return () => window.removeEventListener('contextmenu', onContextMenu)
+  }, [spawn])
+
+  useEffect(() => {
+    const iv = setInterval(() => {
+      setCats(prev => {
+        if (prev.length <= CAT_LIMIT) return prev
+        const idx = prev.findIndex(c => !c.fleeing)
+        if (idx === -1) return prev
+        const copy = [...prev]
+        copy[idx] = { ...copy[idx], fleeing: true }
+        return copy
+      })
+    }, 5000)
+    return () => clearInterval(iv)
+  }, [])
+
+  const onGone = useCallback((id: number) => {
+    setCats(prev => prev.filter(c => c.id !== id))
+  }, [])
+
+  return (
+    <>
+      {cats.map(c => (
+        <Cat key={c.id} cat={c} onGone={onGone} />
+      ))}
+    </>
+  )
+}
+
+/* ========================================
    Main App
    ======================================== */
 export default function App() {
   return (
     <div className="relative min-h-screen">
       <VideoBackground />
+      <Cats />
       <Navbar />
       <Hero />
       <About />

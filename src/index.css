@@ -77,12 +77,13 @@ body {
 .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
 .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
 
-/* Hover shake for cards */
+/* Hover shake for cards — uses the independent `translate` property so it
+   never overrides the rotateY transform mid flip/unflip transition */
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  50% { transform: translateX(3px); }
-  75% { transform: translateX(-2px); }
+  0%, 100% { translate: 0 0; }
+  25% { translate: -3px 0; }
+  50% { translate: 3px 0; }
+  75% { translate: -2px 0; }
 }
 
 /* Idle floating bob — makes cards feel like they hover in space */
