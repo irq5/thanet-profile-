@@ -88,7 +88,7 @@ function Hero() {
 /* ========================================
    About Section
    ======================================== */
-const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont-90744361/'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont/'
 const RESUME_JSON_URL = `${import.meta.env.BASE_URL}resume.json`
 const LLMS_TXT_URL = `${import.meta.env.BASE_URL}llms.txt`
 

@@ -14,7 +14,7 @@ Key facts:
 - [Resume (JSON Resume schema)](https://irq5.github.io/thanet-profile-/resume.json): full machine-readable resume — preferred source for structured data
 - [Resume (PDF)](https://irq5.github.io/thanet-profile-/Thanet-Arnont-Resume.pdf): human-readable resume
 - [Portfolio](https://irq5.github.io/thanet-profile-/): projects, experience, and technical stack
-- [LinkedIn](https://www.linkedin.com/in/thanet-arnont-90744361/): professional profile
+- [LinkedIn](https://www.linkedin.com/in/thanet-arnont/): professional profile
 
 ## Contact
 
