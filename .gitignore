@@ -26,3 +26,4 @@ node_modules/
 dist/
 .vite/
 images/
+TODO.local.md
