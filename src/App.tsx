@@ -172,10 +172,10 @@ function Projects() {
         </p>
       </RevealOnScroll>
 
-      {/* Grid: 1 col mobile, 2 cols desktop */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Grid: 1 col mobile, 2 cols tablet, 3 cols desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, i) => (
-          <FlipCard key={i} project={project} colorIndex={i} />
+          <ProjectCard key={i} project={project} colorIndex={i} />
         ))}
       </div>
     </section>
@@ -183,91 +183,111 @@ function Projects() {
 }
 
 /* ========================================
-   Flip Card Component
+   Flip Card — generic front/back, used by every section
    ======================================== */
-function FlipCard({ project, colorIndex }: { project: typeof projects[number]; colorIndex: number }) {
+function FlipCard({
+  front,
+  back,
+  colorIndex,
+  minHeight,
+}: {
+  front: React.ReactNode
+  back: React.ReactNode
+  colorIndex: number
+  minHeight?: number
+}) {
   const [flipped, setFlipped] = useState(false)
   const colors = cardColors[colorIndex % cardColors.length]
 
   return (
-    <RevealOnScroll>
+    <RevealOnScroll className="h-full">
       <div
-        className={`flip-container ${flipped ? 'flipped' : ''} cursor-pointer`}
+        className={`flip-container float-card ${flipped ? 'flipped' : ''} cursor-pointer`}
+        style={
+          {
+            animationDelay: `${-(colorIndex % 6) * 1.1}s`,
+            ...(minHeight ? { '--card-h': `${minHeight}px` } : {}),
+          } as React.CSSProperties
+        }
         onClick={() => setFlipped(!flipped)}
       >
         <div className="flip-inner">
-          {/* ========== FRONT SIDE ========== */}
-          <div
-            className={`flip-face ${colors.card} flex flex-col items-center justify-center text-center p-8`}
-          >
-            <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
-              Client
-            </span>
-            <h3
-              className="text-3xl sm:text-4xl font-bold text-white leading-tight"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              {project.client}
-            </h3>
-
-            <div className="mt-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-white/40">
-                Project
-              </span>
-              <h4 className="text-lg font-semibold text-white/80 mt-2">
-                {project.name}
-              </h4>
-            </div>
-
-
+          <div className={`flip-face ${colors.card} flex flex-col items-center justify-center text-center p-8`}>
+            {front}
           </div>
-
-          {/* ========== BACK SIDE ========== */}
-          <div
-            className={`flip-face flip-back ${colors.card} flex flex-col p-8`}
-          >
-            <div className="mb-4">
-              <h3
-                className="text-xl font-bold text-white"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                {project.name}
-              </h3>
-              <p className="text-xs text-white/50 mt-1">{project.client}</p>
-            </div>
-
-            <p className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mb-4">
-              {project.tags.map((tag, j) => (
-                <span
-                  key={j}
-                  className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${colors.tag}`}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-white/70 hover:text-white inline-flex items-center gap-1"
-                onClick={(e) => e.stopPropagation()}
-              >
-                View on GitHub →
-              </a>
-            )}
-
-
+          <div className={`flip-face flip-back ${colors.card} flex flex-col p-8`}>
+            {back}
           </div>
         </div>
       </div>
     </RevealOnScroll>
+  )
+}
+
+function ProjectCard({ project, colorIndex }: { project: typeof projects[number]; colorIndex: number }) {
+  const colors = cardColors[colorIndex % cardColors.length]
+
+  return (
+    <FlipCard
+      colorIndex={colorIndex}
+      minHeight={400}
+      front={
+        <>
+          <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+            Client
+          </span>
+          <h3
+            className="text-3xl sm:text-4xl font-bold text-white leading-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            {project.client}
+          </h3>
+          <h4 className="text-base font-semibold text-white/70 mt-5">
+            {project.name}
+          </h4>
+        </>
+      }
+      back={
+        <>
+          <div className="mb-4">
+            <h3
+              className="text-xl font-bold text-white"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {project.name}
+            </h3>
+            <p className="text-xs text-white/50 mt-1">{project.client}</p>
+          </div>
+
+          <p className="text-sm text-white/70 leading-relaxed mb-5 flex-1">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag, j) => (
+              <span
+                key={j}
+                className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${colors.tag}`}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-white/70 hover:text-white inline-flex items-center gap-1"
+              onClick={(e) => e.stopPropagation()}
+            >
+              View on GitHub →
+            </a>
+          )}
+        </>
+      }
+    />
   )
 }
 
@@ -317,31 +337,48 @@ function Experience() {
         </h2>
       </RevealOnScroll>
 
-      <div className="space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {experiences.map((exp, i) => (
-          <RevealOnScroll key={i}>
-            <div className="relative rounded-3xl p-8 overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-white" style={{ fontFamily: 'var(--font-display)' }}>
-                    {exp.role}
-                  </h3>
-                  <p className="text-sm text-white/50">{exp.company}</p>
-                </div>
-                <span className="text-xs font-medium text-white/40 mt-2 sm:mt-0">
+          <FlipCard
+            key={i}
+            colorIndex={i + 3}
+            minHeight={380}
+            front={
+              <>
+                <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
                   {exp.period}
                 </span>
-              </div>
-              <ul className="space-y-2">
-                {exp.highlights.map((h, j) => (
-                  <li key={j} className="text-sm text-white/60 flex items-start gap-2">
-                    <span className="text-white/40 mt-1.5">•</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </RevealOnScroll>
+                <h3
+                  className="text-3xl sm:text-4xl font-bold text-white leading-tight"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {exp.role}
+                </h3>
+                <p className="text-base font-semibold text-white/70 mt-5">{exp.company}</p>
+              </>
+            }
+            back={
+              <>
+                <div className="mb-4">
+                  <h3
+                    className="text-xl font-bold text-white"
+                    style={{ fontFamily: 'var(--font-display)' }}
+                  >
+                    {exp.role}
+                  </h3>
+                  <p className="text-xs text-white/50 mt-1">{exp.company} · {exp.period}</p>
+                </div>
+                <ul className="space-y-2">
+                  {exp.highlights.map((h, j) => (
+                    <li key={j} className="text-sm text-white/70 flex items-start gap-2">
+                      <span className="text-white/40 mt-1.5">•</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            }
+          />
         ))}
       </div>
     </section>
@@ -390,28 +427,46 @@ function Stack() {
         </h2>
       </RevealOnScroll>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {stackCategories.map((cat, i) => (
-          <RevealOnScroll key={i}>
-            <div className="relative rounded-3xl p-6 overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm h-full">
-              <h3
-                className="text-lg font-semibold mb-4 text-white"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                {cat.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cat.items.map((item, j) => (
-                  <span
-                    key={j}
-                    className="text-xs px-3 py-1.5 rounded-full bg-white/10 text-white/70 font-medium"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </RevealOnScroll>
+          <FlipCard
+            key={i}
+            colorIndex={i + 7}
+            minHeight={280}
+            front={
+              <>
+                <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+                  {cat.items.length} technologies
+                </span>
+                <h3
+                  className="text-3xl sm:text-4xl font-bold text-white leading-tight"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {cat.title}
+                </h3>
+              </>
+            }
+            back={
+              <>
+                <h3
+                  className="text-xl font-bold text-white mb-4"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {cat.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {cat.items.map((item, j) => (
+                    <span
+                      key={j}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium ${cardColors[(i + 7) % cardColors.length].tag}`}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </>
+            }
+          />
         ))}
       </div>
     </section>

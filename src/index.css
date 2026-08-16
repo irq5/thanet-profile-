@@ -85,6 +85,20 @@ body {
   75% { transform: translateX(-2px); }
 }
 
+/* Idle floating bob — makes cards feel like they hover in space */
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-card {
+  animation: float-bob 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-card { animation: none; }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -101,12 +115,14 @@ body {
    ======================================== */
 .flip-container {
   perspective: 1200px;
+  height: 100%;
 }
 
 .flip-inner {
   position: relative;
   width: 100%;
-  min-height: 380px;
+  height: 100%;
+  min-height: var(--card-h, 380px);
   transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
   transform-style: preserve-3d;
 }
@@ -127,11 +143,19 @@ body {
   -webkit-backface-visibility: hidden;
   border-radius: 1.5rem;
   overflow: hidden;
+  box-shadow:
+    0 24px 48px -16px rgba(0, 0, 0, 0.55),
+    0 8px 20px -8px rgba(0, 0, 0, 0.35);
 }
 
 .flip-back {
   transform: rotateY(180deg);
+  overflow-y: auto;
 }
+
+.flip-back::-webkit-scrollbar { width: 4px; }
+.flip-back::-webkit-scrollbar-track { background: transparent; }
+.flip-back::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 2px; }
 
 /* ========================================
    Card Colors — Solid gradients with visible backgrounds
