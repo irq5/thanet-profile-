@@ -66,7 +66,7 @@ function Hero() {
       </h1>
 
       <p className="text-white/50 text-base sm:text-lg max-w-2xl mt-8 leading-relaxed animate-fade-rise-delay">
-        30+ years of production experience building systems for millions of users.
+        20+ years of production experience building systems for millions of users.
         From telecom giants to national auctions, from AI platforms to developer tools.
         <br /><br />
         <span className="text-white">
@@ -492,16 +492,10 @@ function Contact() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
-            href="mailto:taned.ar@inspektion.co.th"
+            href="mailto:thanet@wisdomvast.com"
             className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
           >
-            taned.ar@inspektion.co.th
-          </a>
-          <a
-            href="tel:+66902693428"
-            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
-          >
-            +66 90 269 3428
+            thanet@wisdomvast.com
           </a>
         </div>
       </RevealOnScroll>

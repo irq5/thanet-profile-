@@ -1,6 +1,6 @@
 # thanet-profile
 
-Source code for my personal portfolio website — cinematic hero section, glassmorphism UI, 30+ years of production experience.
+Source code for my personal portfolio website — cinematic hero section, glassmorphism UI, 20+ years of production experience.
 
 ## Tech Stack
 
