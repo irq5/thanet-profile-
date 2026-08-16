@@ -89,7 +89,8 @@ function Hero() {
    About Section
    ======================================== */
 const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont-90744361/'
-const RESUME_URL = `${import.meta.env.BASE_URL}Thanet-Arnont-Resume.pdf`
+const RESUME_JSON_URL = `${import.meta.env.BASE_URL}resume.json`
+const LLMS_TXT_URL = `${import.meta.env.BASE_URL}llms.txt`
 
 function About() {
   return (
@@ -134,11 +135,12 @@ function About() {
                 LinkedIn →
               </a>
               <a
-                href={RESUME_URL}
-                download
+                href={RESUME_JSON_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
               >
-                Download Resume (PDF)
+                Resume API (JSON) →
               </a>
             </div>
           </div>
@@ -605,13 +607,29 @@ function Contact() {
           >
             LinkedIn
           </a>
-          <a
-            href={RESUME_URL}
-            download
-            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
-          >
-            Resume (PDF)
-          </a>
+        </div>
+
+        {/* Machine-readable endpoints for AI agents & bots */}
+        <div className="mt-12 max-w-xl mx-auto text-left rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm p-6 font-mono text-xs sm:text-sm">
+          <p className="font-sans text-[11px] uppercase tracking-widest text-white/40 mb-4">
+            For AI agents &amp; bots
+          </p>
+          <p className="text-emerald-300/90 break-all">
+            $ curl https://irq5.github.io/thanet-profile-/resume.json
+          </p>
+          <p className="text-white/40 mt-1"># machine-readable resume · JSON Resume schema</p>
+          <p className="text-emerald-300/90 break-all mt-4">
+            $ curl https://irq5.github.io/thanet-profile-/llms.txt
+          </p>
+          <p className="text-white/40 mt-1"># LLM-friendly guide to this site</p>
+          <div className="mt-5 flex gap-4 font-sans">
+            <a href={RESUME_JSON_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-white/60 hover:text-white">
+              resume.json →
+            </a>
+            <a href={LLMS_TXT_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-white/60 hover:text-white">
+              llms.txt →
+            </a>
+          </div>
         </div>
       </RevealOnScroll>
     </section>
@@ -646,19 +664,6 @@ function RevealOnScroll({ children, className }: { children: React.ReactNode; cl
     <div ref={ref} className={`reveal ${className || ''}`}>
       {children}
     </div>
-  )
-}
-
-/* ========================================
-   Footer
-   ======================================== */
-function Footer() {
-  return (
-    <footer className="relative z-10 border-t border-white/10 py-8 px-6 text-center">
-      <p className="text-xs text-white/30">
-        © {new Date().getFullYear()} Thanet Arnont · Wisdom Vast Co., Ltd. Built with React, TypeScript, Vite.
-      </p>
-    </footer>
   )
 }
 
@@ -700,7 +705,6 @@ export default function App() {
       <Experience />
       <Stack />
       <Contact />
-      <Footer />
     </div>
   )
 }

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Thanet Arnont",
+    "label": "Senior Software Engineer & System Architect",
+    "email": "thanet@wisdomvast.com",
+    "url": "https://irq5.github.io/thanet-profile-/",
+    "summary": "Seasoned Software Engineer and System Architect with 20+ years of continuous production experience since 2004. Built enterprise-grade systems for Thailand's top telecom, banking, and government sectors — including national-scale real-time auction platforms and financial compliance systems. Now focused on modern full-stack development, AI-driven platforms, and developer tooling with Next.js, TypeScript, React, and MCP integration. Available for consulting through Wisdom Vast Co., Ltd.",
+    "location": {
+      "city": "Nonthaburi",
+      "countryCode": "TH",
+      "region": "Nonthaburi"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "thanet-arnont-90744361",
+        "url": "https://www.linkedin.com/in/thanet-arnont-90744361/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Wisdom Vast Co., Ltd.",
+      "position": "System Architect & Senior Developer",
+      "startDate": "2008-01-01",
+      "summary": "Architecture and hands-on delivery for Thailand's telecom, government, and enterprise sectors.",
+      "highlights": [
+        "Led development of 15+ production applications for AIS (Thailand's #1 telecom): gamification, knowledge management, e-service, and CRM platforms",
+        "Built the NBTC Digital TV Spectrum Auction — national-scale real-time bidding with WebSocket engine and government-grade audit trail",
+        "Delivered the Off-Budget Accounting System for the Ministry of Finance: fund tracking, multi-level approvals, compliance reporting",
+        "Shipped 5 production platforms in 2026: Hauction, SDLC_AI, Programming Visualize, Drawing Game, GitlabSelfhost",
+        "Built a production MCP server (31 tools) for AI collaboration; automated GitLab migration of 1,000+ projects"
+      ]
+    },
+    {
+      "name": "Advance System Consulting",
+      "position": "System Analyst",
+      "startDate": "2007-01-01",
+      "endDate": "2008-01-01",
+      "highlights": [
+        "Built the Treasury Risk Management System for Krungthai Bank — risk calculations, regulatory reporting, and multi-level approval workflows"
+      ]
+    },
+    {
+      "name": "DTAC (Total Access Communication)",
+      "position": "System Analyst / R&D",
+      "startDate": "2004-01-01",
+      "endDate": "2007-01-01",
+      "highlights": [
+        "Researched and developed mobile network services; studied global mobile technologies",
+        "Integrated vendor test systems and developed system connection interfaces"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "King Mongkut's Institute of Technology Ladkrabang (KMITL)",
+      "area": "Computer Engineering",
+      "studyType": "Bachelor of Engineering (B.Eng.)",
+      "startDate": "2000-01-01",
+      "endDate": "2004-01-01"
+    }
+  ],
+  "skills": [
+    { "name": "Languages", "keywords": ["TypeScript", "JavaScript", "Python", "Java", "PHP", "Go", "SQL"] },
+    { "name": "Frontend", "keywords": ["React 19", "Next.js 16", "Vue.js", "Tailwind CSS", "Canvas API"] },
+    { "name": "Backend", "keywords": ["Node.js", "Express", "REST APIs", "GraphQL", "WebSocket"] },
+    { "name": "Database", "keywords": ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis"] },
+    { "name": "Architecture", "keywords": ["System Analysis & Design", "Microservices", "RBAC", "OAuth 2.0", "API Design"] },
+    { "name": "AI & Tooling", "keywords": ["Model Context Protocol (MCP)", "LLM Integration", "AI-assisted SDLC", "Code Generation"] },
+    { "name": "DevOps", "keywords": ["Git", "Docker", "CI/CD", "AWS", "Vercel", "Linux"] }
+  ],
+  "languages": [
+    { "language": "Thai", "fluency": "Native speaker" },
+    { "language": "English", "fluency": "Professional working proficiency" }
+  ],
+  "projects": [
+    {
+      "name": "Programming Visualize (MongoModel Editor)",
+      "description": "Visual MongoDB schema designer with drag-and-drop canvas, relationship modeling, 8-format code generation, workspace-wide linting, and an MCP server (31 tools) so AI agents work from the same data as the web UI.",
+      "keywords": ["Next.js 16", "React 19", "TypeScript", "MCP"],
+      "url": "https://github.com/jaturapornchai/mongomodeleditor"
+    },
+    {
+      "name": "Hauction — Hybrid Auction Platform",
+      "description": "Multi-shop platform with dual auction engine (live event + long-term marketplace), 5-role permission hierarchy, KYC approval workflows, and full Thai Baht localization.",
+      "keywords": ["Next.js", "better-sqlite3", "WebSockets", "RBAC"]
+    },
+    {
+      "name": "SDLC_AI — AI-Driven SDLC Platform",
+      "description": "Guides software projects from requirements to deployment with AI feedback at every stage; multi-role dashboards via GitLab OAuth with intelligent gap detection.",
+      "keywords": ["Next.js", "GitLab OAuth", "LLM Integration"]
+    },
+    {
+      "name": "GitlabSelfhost — Migration & Inventory",
+      "description": "Automated enterprise GitLab migration: structured CSV schema, logic-based mapping, bulk operations across instances with validation and rollback — 1,000+ projects processed.",
+      "keywords": ["Python", "GitLab REST API"]
+    },
+    {
+      "name": "NBTC Digital TV Spectrum Auction",
+      "description": "National-scale real-time auction platform for digital TV spectrum licensing: multi-bidder WebSocket engine, state machine lifecycle, government-grade audit trail.",
+      "keywords": ["Next.js", "TypeScript", "WebSockets", "State Machine"]
+    }
+  ],
+  "meta": {
+    "canonical": "https://irq5.github.io/thanet-profile-/resume.json",
+    "version": "1.0.0",
+    "lastModified": "2026-08-17",
+    "note": "This resume is intentionally machine-readable. AI agents and bots are welcome to read it. Also see /llms.txt."
+  }
+}

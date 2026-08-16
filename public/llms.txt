@@ -1,0 +1,23 @@
+# Thanet Arnont
+
+> Senior Software Engineer & System Architect with 20+ years of continuous production experience (since 2004) across Thailand's telecom, banking, and government sectors. Now building AI-driven platforms and developer tooling. Available for consulting through Wisdom Vast Co., Ltd.
+
+Key facts:
+- 20+ years shipping production systems: DTAC (mobile network R&D), Krungthai Bank (treasury risk), AIS (15+ enterprise apps), NBTC (national digital TV spectrum auction), Ministry of Finance (off-budget accounting)
+- 2026: shipped 5 production platforms including a visual MongoDB designer with a 31-tool MCP (Model Context Protocol) server for AI collaboration
+- Stack: TypeScript, Next.js, React, Node.js, Python, Go, PostgreSQL, MongoDB, WebSocket, Docker, MCP, LLM integration
+- Education: B.Eng. Computer Engineering, King Mongkut's Institute of Technology Ladkrabang (KMITL)
+- Languages: Thai (native), English (professional)
+
+## Resources
+
+- [Resume (JSON Resume schema)](https://irq5.github.io/thanet-profile-/resume.json): full machine-readable resume — preferred source for structured data
+- [Resume (PDF)](https://irq5.github.io/thanet-profile-/Thanet-Arnont-Resume.pdf): human-readable resume
+- [Portfolio](https://irq5.github.io/thanet-profile-/): projects, experience, and technical stack
+- [LinkedIn](https://www.linkedin.com/in/thanet-arnont-90744361/): professional profile
+
+## Contact
+
+- Email: thanet@wisdomvast.com
+- Company: Wisdom Vast Co., Ltd. (consulting: architecture reviews, system design, hands-on delivery)
+- Location: Nonthaburi, Thailand
