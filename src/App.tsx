@@ -33,6 +33,7 @@ function Navbar() {
 
       <div className="hidden md:flex gap-8 items-center">
         <a href="#hero" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
+        <a href="#about" className="text-sm text-white/60 hover:text-white transition-colors">About</a>
         <a href="#projects" className="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
         <a href="#experience" className="text-sm text-white/60 hover:text-white transition-colors">Experience</a>
         <a href="#stack" className="text-sm text-white/60 hover:text-white transition-colors">Stack</a>
@@ -70,7 +71,7 @@ function Hero() {
         From telecom giants to national auctions, from AI platforms to developer tools.
         <br /><br />
         <span className="text-white">
-          Senior Software Engineer & System Architect
+          Senior Software Engineer & System Architect · Wisdom Vast Co., Ltd.
         </span>
       </p>
 
@@ -80,6 +81,104 @@ function Hero() {
       >
         View My Work
       </a>
+    </section>
+  )
+}
+
+/* ========================================
+   About Section
+   ======================================== */
+const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont-90744361/'
+const RESUME_URL = `${import.meta.env.BASE_URL}Thanet-Arnont-Resume.pdf`
+
+function About() {
+  return (
+    <section id="about" className="relative z-10 px-6 py-20 max-w-6xl mx-auto">
+      <RevealOnScroll>
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-center rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm p-8 sm:p-12">
+          <img
+            src={`${import.meta.env.BASE_URL}thanet-portrait.jpg`}
+            alt="Thanet Arnont"
+            className="w-56 md:w-64 rounded-3xl mx-auto shadow-2xl"
+          />
+          <div>
+            <h2
+              className="text-4xl sm:text-5xl tracking-tight mb-6 text-white"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              About
+            </h2>
+            <p className="text-white/60 leading-relaxed mb-4">
+              I'm Thanet Arnont — a software engineer and system architect based in Nonthaburi,
+              Thailand, shipping production systems since 2004. My path runs through the country's
+              most demanding environments: mobile network R&D at DTAC, treasury risk systems for
+              Krungthai Bank, 15+ enterprise applications for AIS, the NBTC Digital TV spectrum
+              auction, and financial systems for the Ministry of Finance.
+            </p>
+            <p className="text-white/60 leading-relaxed mb-4">
+              Today, at <span className="text-white font-semibold">Wisdom Vast Co., Ltd.</span>,
+              I combine two decades of architecture judgment with a modern AI-driven stack —
+              Next.js, TypeScript, MCP — to design, build, and rescue systems that have to work.
+            </p>
+            <p className="text-white/60 leading-relaxed mb-8">
+              B.Eng. Computer Engineering, King Mongkut's Institute of Technology Ladkrabang (KMITL).
+              Open to consulting engagements: architecture reviews, system design, and hands-on delivery.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+              >
+                LinkedIn →
+              </a>
+              <a
+                href={RESUME_URL}
+                download
+                className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+              >
+                Download Resume (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+      </RevealOnScroll>
+    </section>
+  )
+}
+
+/* ========================================
+   Stats Strip
+   ======================================== */
+const stats = [
+  { value: '20+', label: 'Years in Production' },
+  { value: '15+', label: 'Apps Shipped for AIS' },
+  { value: '5', label: 'Platforms Launched in 2026' },
+  { value: '1000+', label: 'GitLab Projects Migrated' },
+]
+
+function Stats() {
+  return (
+    <section className="relative z-10 px-6 pb-4 max-w-6xl mx-auto">
+      <RevealOnScroll>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm p-6 text-center"
+            >
+              <div
+                className="text-4xl sm:text-5xl text-white mb-2"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {s.value}
+              </div>
+              <div className="text-xs uppercase tracking-widest text-white/40">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </RevealOnScroll>
     </section>
   )
 }
@@ -487,7 +586,8 @@ function Contact() {
           Let's Build Together
         </h2>
         <p className="text-white/40 max-w-xl mx-auto mb-10">
-          Open to consulting, architecture reviews, and ambitious projects that need someone who's been shipping production code since 2004.
+          Open to consulting, architecture reviews, and ambitious projects that need someone
+          who's been shipping production code since 2004 — through Wisdom Vast Co., Ltd.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -496,6 +596,21 @@ function Contact() {
             className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
           >
             thanet@wisdomvast.com
+          </a>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={RESUME_URL}
+            download
+            className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
+          >
+            Resume (PDF)
           </a>
         </div>
       </RevealOnScroll>
@@ -541,7 +656,7 @@ function Footer() {
   return (
     <footer className="relative z-10 border-t border-white/10 py-8 px-6 text-center">
       <p className="text-xs text-white/30">
-        © {new Date().getFullYear()} Thanet Arnont. Built with React, TypeScript, Vite.
+        © {new Date().getFullYear()} Thanet Arnont · Wisdom Vast Co., Ltd. Built with React, TypeScript, Vite.
       </p>
     </footer>
   )
@@ -579,6 +694,8 @@ export default function App() {
       <VideoBackground />
       <Navbar />
       <Hero />
+      <About />
+      <Stats />
       <Projects />
       <Experience />
       <Stack />
