@@ -27,3 +27,4 @@ dist/
 .vite/
 images/
 TODO.local.md
+*.local.md
