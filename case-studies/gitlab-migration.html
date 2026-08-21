@@ -21,6 +21,123 @@
 
     <link rel="canonical" href="https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html" />
     <link rel="alternate" type="application/json" title="Resume (JSON Resume schema)" href="https://irq5.github.io/thanet-profile-/resume.json" />
+    <!-- schema.org JSON-LD: the structured layer crawlers and agents read -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": "https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html#article",
+        "headline": "Migrating 1,000+ GitLab projects without a manual checklist",
+        "description": "How discovery, planning, and execution were split into three passes over one reviewable plan file, so a bulk migration of more than a thousand self-hosted GitLab projects stayed auditable, resumable, and reversible.",
+        "url": "https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html",
+        "inLanguage": "en",
+        "datePublished": "2026-08-21",
+        "dateModified": "2026-08-21",
+        "author": {
+          "@type": "Person",
+          "@id": "https://irq5.github.io/thanet-profile-/#thanet",
+          "name": "Thanet Arnont",
+          "jobTitle": "Senior Software Engineer & System Architect",
+          "description": "System architect with 20+ years of continuous production experience since 2004, across Thailand's telecom, banking, and government sectors. Now builds AI-driven platforms, agentic software, and developer tooling.",
+          "url": "https://irq5.github.io/thanet-profile-/",
+          "image": "https://irq5.github.io/thanet-profile-/thanet-portrait.jpg",
+          "email": "mailto:thanet@wisdomvast.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nonthaburi",
+            "addressCountry": "TH"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Wisdom Vast Co., Ltd.",
+            "description": "Consulting: architecture reviews, system design, and hands-on delivery."
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "King Mongkut's Institute of Technology Ladkrabang (KMITL)"
+          },
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "B.Eng. Computer Engineering"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/thanet-arnont/"
+          ],
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "Thai",
+              "alternateName": "th"
+            },
+            {
+              "@type": "Language",
+              "name": "English",
+              "alternateName": "en"
+            }
+          ],
+          "knowsAbout": [
+            "System architecture",
+            "Real-time bidding systems",
+            "WebSocket engines",
+            "State machine design",
+            "Government-grade audit trails",
+            "Regulatory compliance systems",
+            "Model Context Protocol (MCP)",
+            "Agentic software architecture",
+            "AI loop agents",
+            "Codeless domain question-answering agents",
+            "Self-hosted LLM inference",
+            "On-premise and air-gapped AI deployment",
+            "Machine vision",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Node.js",
+            "Python",
+            "PostgreSQL",
+            "MongoDB",
+            "Enterprise GitLab migration"
+          ],
+          "seeks": {
+            "@type": "Demand",
+            "name": "Consulting engagements: architecture reviews, system design, hands-on delivery"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wisdom Vast Co., Ltd."
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Enterprise GitLab migration"
+          },
+          {
+            "@type": "Thing",
+            "name": "Bulk operations"
+          },
+          {
+            "@type": "Thing",
+            "name": "Idempotency"
+          },
+          {
+            "@type": "Thing",
+            "name": "Data integrity"
+          },
+          {
+            "@type": "Thing",
+            "name": "Internal tooling"
+          }
+        ],
+        "isPartOf": {
+          "@id": "https://irq5.github.io/thanet-profile-/#website"
+        },
+        "image": "https://irq5.github.io/thanet-profile-/og.png",
+        "articleBody": "The problem. Self-hosted GitLab estates grow faster than anyone reorganises them. This one had passed a thousand projects, sitting in a group structure that no longer matched how the teams actually worked. Moving them by hand was not realistic: every project carries members, branches, and settings that fail quietly when a step is skipped, and a run measured in hours has to survive being interrupted rather than start over.\n\nThe approach. Separate discovery from execution, and put a contract between them that a person can review. An inventory pass reads the source instance through the GitLab REST API and writes one row per project into a structured CSV — current path, intended path, and the attributes that have to survive the move. Mapping is expressed as rules rather than typed out project by project, so a naming convention is written once and applied across a thousand rows. Nothing moves until that file has been read. Execution then consumes the same file. Operations run in bulk but idempotently, each result is validated against the plan, and a batch that fails validation is rolled back instead of left half-applied.\n\nThe pipeline. Discovery, planning, and execution are three passes over one file. The plan file is the boundary: everything above it only reads, everything below it writes to the target instance, and the review gate sits exactly where the risk changes. Reconciliation compares the plan against what the target actually reports, so a failed batch rolls back rather than leaving the estate in a state nobody can describe.\n\nThe result. 1,000+ projects migrated with their structure and data integrity preserved, and a complete record — the plan file itself — of what was supposed to move where, diffable against what actually did.\n\nThe decision that mattered. The temptation was to make the tool clever enough to decide for itself. Choosing a plain CSV instead turned an irreversible bulk operation into something a team lead could open in a spreadsheet, question, correct, and re-run. On a migration this size, reviewability was worth more than automation.",
+        "wordCount": 341
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">

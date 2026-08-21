@@ -21,6 +21,123 @@
 
     <link rel="canonical" href="https://irq5.github.io/thanet-profile-/case-studies/hauction.html" />
     <link rel="alternate" type="application/json" title="Resume (JSON Resume schema)" href="https://irq5.github.io/thanet-profile-/resume.json" />
+    <!-- schema.org JSON-LD: the structured layer crawlers and agents read -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": "https://irq5.github.io/thanet-profile-/case-studies/hauction.html#article",
+        "headline": "Two auction models, one definition of who won",
+        "description": "Running a synchronous live event auction and an asynchronous long-term marketplace on a single bid ledger, so neither mode can grow its own answer to who won or what was paid.",
+        "url": "https://irq5.github.io/thanet-profile-/case-studies/hauction.html",
+        "inLanguage": "en",
+        "datePublished": "2026-08-21",
+        "dateModified": "2026-08-21",
+        "author": {
+          "@type": "Person",
+          "@id": "https://irq5.github.io/thanet-profile-/#thanet",
+          "name": "Thanet Arnont",
+          "jobTitle": "Senior Software Engineer & System Architect",
+          "description": "System architect with 20+ years of continuous production experience since 2004, across Thailand's telecom, banking, and government sectors. Now builds AI-driven platforms, agentic software, and developer tooling.",
+          "url": "https://irq5.github.io/thanet-profile-/",
+          "image": "https://irq5.github.io/thanet-profile-/thanet-portrait.jpg",
+          "email": "mailto:thanet@wisdomvast.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nonthaburi",
+            "addressCountry": "TH"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Wisdom Vast Co., Ltd.",
+            "description": "Consulting: architecture reviews, system design, and hands-on delivery."
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "King Mongkut's Institute of Technology Ladkrabang (KMITL)"
+          },
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "B.Eng. Computer Engineering"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/thanet-arnont/"
+          ],
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "Thai",
+              "alternateName": "th"
+            },
+            {
+              "@type": "Language",
+              "name": "English",
+              "alternateName": "en"
+            }
+          ],
+          "knowsAbout": [
+            "System architecture",
+            "Real-time bidding systems",
+            "WebSocket engines",
+            "State machine design",
+            "Government-grade audit trails",
+            "Regulatory compliance systems",
+            "Model Context Protocol (MCP)",
+            "Agentic software architecture",
+            "AI loop agents",
+            "Codeless domain question-answering agents",
+            "Self-hosted LLM inference",
+            "On-premise and air-gapped AI deployment",
+            "Machine vision",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Node.js",
+            "Python",
+            "PostgreSQL",
+            "MongoDB",
+            "Enterprise GitLab migration"
+          ],
+          "seeks": {
+            "@type": "Demand",
+            "name": "Consulting engagements: architecture reviews, system design, hands-on delivery"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wisdom Vast Co., Ltd."
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Auction systems"
+          },
+          {
+            "@type": "Thing",
+            "name": "Real-time bidding"
+          },
+          {
+            "@type": "Thing",
+            "name": "Serialization"
+          },
+          {
+            "@type": "Thing",
+            "name": "RBAC"
+          },
+          {
+            "@type": "Thing",
+            "name": "Product architecture"
+          }
+        ],
+        "isPartOf": {
+          "@id": "https://irq5.github.io/thanet-profile-/#website"
+        },
+        "image": "https://irq5.github.io/thanet-profile-/og.png",
+        "articleBody": "The problem. A live event auction is synchronous. Everyone watches one clock, bids land seconds apart, and the order they land in is the outcome. A long-term marketplace listing is the opposite: it runs for days, bidders arrive and leave, and most of the time nobody is watching at all. Most platforms pick one of those and bolt the other on later. Hauction had to run both at once, for multiple independent shops, in a single product — which means two behaviours that must never disagree about who won or what was paid.\n\nThe approach. Share everything that is genuinely the same, and separate only the thing that actually differs: what triggers evaluation. An item, a bid, a bidder's identity, the money, and the rule that picks a winner are identical in both modes, so they live in one model with one bid ledger. The live path holds an open WebSocket channel and settles against a server-authoritative clock — never the client's. The marketplace path evaluates on its deadline instead of holding a socket open per listing, because a listing that runs for a week does not need a live connection for six and a half days of it. Underneath both, an auction is a serialization problem: who bid first has to have exactly one answer. Keeping writes on a single synchronous writer makes that ordering a property of the store rather than something to coordinate between processes. Multi-shop is what forces the permission model. Once shops are independent, \"admin\" stops being one thing — a shop owner is not a platform administrator, and a platform administrator is not a seller. That is five distinct roles, with KYC approval gating who may sell and who may bid at scale.\n\nThe structure. Above the access gate the two modes differ. Below it they share everything: the same access rules, the same serialized ledger, the same winner rule. The split sits at the one place where the modes genuinely diverge, so neither mode can quietly grow its own answer to who won.\n\nThe result. One platform serving live and long-term auctions across multiple shops, with a five-role permission hierarchy and KYC workflows in front of it — and prices, rounding, and copy in Thai Baht throughout, rather than a locale layer added after the fact.\n\nThe decision that mattered. Not writing a second engine. Two engines would have shipped faster and then spent years disagreeing: two winner rules, two rounding behaviours, two places to fix every bug about money. Keeping one ledger cost more up front and bought a system where a bug about money can only be in one place.",
+        "wordCount": 439
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
