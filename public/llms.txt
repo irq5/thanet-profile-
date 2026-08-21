@@ -12,6 +12,7 @@ Key facts:
 ## Resources
 
 - [Resume (JSON Resume schema)](https://irq5.github.io/thanet-profile-/resume.json): full machine-readable resume — preferred source for structured data
+- [Resume (PDF)](https://irq5.github.io/thanet-profile-/Thanet-Arnont-Resume.pdf): human-readable resume
 - [Portfolio](https://irq5.github.io/thanet-profile-/): projects, experience, and technical stack
 - [LinkedIn](https://www.linkedin.com/in/thanet-arnont/): professional profile
 - [Case study: migrating 1,000+ GitLab projects](https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html): how discovery, planning, and execution were split across one reviewable plan file
