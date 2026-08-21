@@ -68,7 +68,8 @@
     { "name": "Backend", "keywords": ["Node.js", "Express", "REST APIs", "GraphQL", "WebSocket"] },
     { "name": "Database", "keywords": ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis"] },
     { "name": "Architecture", "keywords": ["System Analysis & Design", "Microservices", "RBAC", "OAuth 2.0", "API Design"] },
-    { "name": "AI & Tooling", "keywords": ["Model Context Protocol (MCP)", "LLM Integration", "AI-assisted SDLC", "Code Generation"] },
+    { "name": "AI & Agents", "keywords": ["Model Context Protocol (MCP)", "Codeless domain Q&A agents", "AI loop agents", "Agentic software architecture", "Custom agents", "Multi-agent orchestration", "Human-in-the-loop design", "LLM Integration", "AI-assisted SDLC", "Code Generation"] },
+  { "name": "Local AI", "keywords": ["Self-hosted LLM inference", "Open-weight models", "Quantization", "On-prem / air-gapped deployment", "Machine vision", "Object detection", "OCR", "Edge inference"] },
     { "name": "DevOps", "keywords": ["Git", "Docker", "CI/CD", "AWS", "Vercel", "Linux"] }
   ],
   "languages": [
@@ -79,13 +80,13 @@
     {
       "name": "Programming Visualize (MongoModel Editor)",
       "description": "Visual MongoDB schema designer with drag-and-drop canvas, relationship modeling, 8-format code generation, workspace-wide linting, and an MCP server (31 tools) so AI agents work from the same data as the web UI.",
-      "keywords": ["Next.js 16", "React 19", "TypeScript", "MCP"],
-      "url": "https://github.com/jaturapornchai/mongomodeleditor"
+      "keywords": ["Next.js 16", "React 19", "TypeScript", "MCP"]
     },
     {
       "name": "Hauction — Hybrid Auction Platform",
       "description": "Multi-shop platform with dual auction engine (live event + long-term marketplace), 5-role permission hierarchy, KYC approval workflows, and full Thai Baht localization.",
-      "keywords": ["Next.js", "better-sqlite3", "WebSockets", "RBAC"]
+      "keywords": ["Next.js", "better-sqlite3", "WebSockets", "RBAC"],
+      "url": "https://irq5.github.io/thanet-profile-/case-studies/hauction.html"
     },
     {
       "name": "SDLC_AI — AI-Driven SDLC Platform",
@@ -93,9 +94,15 @@
       "keywords": ["Next.js", "GitLab OAuth", "LLM Integration"]
     },
     {
+      "name": "pi-agent / hermes-agent — Codeless Domain Q&A Agents",
+      "description": "Question-answering systems built for organisations working with dense, specialised material. Configured rather than coded, and deliberately not a conventional local RAG: instead of returning retrieved passages, the agents reason across the material so questions that require analysis come back with an answer.",
+      "keywords": ["Agentic AI", "Codeless", "Domain Q&A", "Local model inference"]
+    },
+    {
       "name": "GitlabSelfhost — Migration & Inventory",
       "description": "Automated enterprise GitLab migration: structured CSV schema, logic-based mapping, bulk operations across instances with validation and rollback — 1,000+ projects processed.",
-      "keywords": ["Python", "GitLab REST API"]
+      "keywords": ["Python", "GitLab REST API"],
+      "url": "https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html"
     },
     {
       "name": "NBTC Digital TV Spectrum Auction",
@@ -106,7 +113,7 @@
   "meta": {
     "canonical": "https://irq5.github.io/thanet-profile-/resume.json",
     "version": "1.0.0",
-    "lastModified": "2026-08-17",
+    "lastModified": "2026-08-21",
     "note": "This resume is intentionally machine-readable. AI agents and bots are welcome to read it. Also see /llms.txt."
   }
 }
