@@ -107,7 +107,6 @@ function Hero() {
    ======================================== */
 const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont/'
 const RESUME_JSON_URL = `${import.meta.env.BASE_URL}resume.json`
-const RESUME_PDF_URL = `${import.meta.env.BASE_URL}Thanet-Arnont-Resume.pdf`
 const CASE_STUDY_GITLAB = `${import.meta.env.BASE_URL}case-studies/gitlab-migration.html`
 const CASE_STUDY_HAUCTION = `${import.meta.env.BASE_URL}case-studies/hauction.html`
 const CASE_STUDY_BEYOND_RAG = `${import.meta.env.BASE_URL}case-studies/beyond-rag.html`
@@ -154,14 +153,6 @@ function About() {
                 className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
               >
                 LinkedIn →
-              </a>
-              <a
-                href={RESUME_PDF_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
-              >
-                Resume (PDF) →
               </a>
               <a
                 href={RESUME_JSON_URL}
@@ -846,17 +837,6 @@ function Contact() {
             className="liquid-glass rounded-full px-10 py-4 text-white hover:scale-[1.03] transition-transform"
           >
             LinkedIn
-          </a>
-        </div>
-
-        <div className="flex flex-wrap gap-4 justify-center items-center mt-4">
-          <a
-            href={RESUME_PDF_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
-          >
-            Download Resume (PDF) →
           </a>
         </div>
 
