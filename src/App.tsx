@@ -20,6 +20,17 @@ const cardColors = [
 /* ========================================
    Navigation Bar
    ======================================== */
+const navLinks: [string, string][] = [
+  ['#hero', 'Home'],
+  ['#about', 'About'],
+  ['#projects', 'Projects'],
+  ['#case-studies', 'Case Studies'],
+  ['#ai', 'AI'],
+  ['#experience', 'Experience'],
+  ['#stack', 'Stack'],
+  ['#contact', 'Contact'],
+]
+
 function Navbar() {
   return (
     <nav className="relative z-10 flex flex-row justify-between items-center px-8 py-6 max-w-7xl mx-auto">
@@ -31,20 +42,23 @@ function Navbar() {
         Thanet<sup className="text-xs">®</sup>
       </a>
 
-      <div className="hidden md:flex gap-8 items-center">
-        <a href="#hero" className="text-sm text-white/60 hover:text-white transition-colors">Home</a>
-        <a href="#about" className="text-sm text-white/60 hover:text-white transition-colors">About</a>
-        <a href="#projects" className="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
-        <a href="#experience" className="text-sm text-white/60 hover:text-white transition-colors">Experience</a>
-        <a href="#stack" className="text-sm text-white/60 hover:text-white transition-colors">Stack</a>
-        <a href="#contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+      <div className="hidden md:flex gap-5 lg:gap-8 items-center">
+        {navLinks.map(([href, label]) => (
+          <a
+            key={href}
+            href={href}
+            className="text-sm text-white/60 hover:text-white transition-colors whitespace-nowrap"
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
       <a
         href="#contact"
         className="liquid-glass rounded-full px-6 py-2.5 text-sm text-white hover:scale-[1.03] transition-transform"
       >
-        Begin Journey
+        Hire Me
       </a>
     </nav>
   )
@@ -56,6 +70,9 @@ function Navbar() {
 function Hero() {
   return (
     <section id="hero" className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40 py-[90px]">
+      <p className="text-xs sm:text-sm uppercase tracking-[0.25em] text-white/60 mb-6 animate-fade-rise">
+        Senior Software Engineer &amp; System Architect
+      </p>
       <h1
         className="text-5xl sm:text-7xl md:text-8xl leading-[0.95] tracking-[-2.46px] max-w-7xl font-normal animate-fade-rise text-white"
         style={{ fontFamily: 'var(--font-display)' }}
@@ -71,7 +88,7 @@ function Hero() {
         From telecom giants to national auctions, from AI platforms to developer tools.
         <br /><br />
         <span className="text-white">
-          Senior Software Engineer & System Architect · Wisdom Vast Co., Ltd.
+          Available for consulting through Wisdom Vast Co., Ltd.
         </span>
       </p>
 
@@ -90,6 +107,9 @@ function Hero() {
    ======================================== */
 const LINKEDIN_URL = 'https://www.linkedin.com/in/thanet-arnont/'
 const RESUME_JSON_URL = `${import.meta.env.BASE_URL}resume.json`
+const RESUME_PDF_URL = `${import.meta.env.BASE_URL}Thanet-Arnont-Resume.pdf`
+const CASE_STUDY_GITLAB = `${import.meta.env.BASE_URL}case-studies/gitlab-migration.html`
+const CASE_STUDY_HAUCTION = `${import.meta.env.BASE_URL}case-studies/hauction.html`
 const LLMS_TXT_URL = `${import.meta.env.BASE_URL}llms.txt`
 
 function About() {
@@ -135,6 +155,14 @@ function About() {
                 LinkedIn →
               </a>
               <a
+                href={RESUME_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+              >
+                Resume (PDF) →
+              </a>
+              <a
                 href={RESUME_JSON_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -176,7 +204,7 @@ function Stats() {
               >
                 {s.value}
               </div>
-              <div className="text-xs uppercase tracking-widest text-white/40">{s.label}</div>
+              <div className="text-xs uppercase tracking-widest text-white/50">{s.label}</div>
             </div>
           ))}
         </div>
@@ -212,13 +240,13 @@ const projects = [
     name: 'Programming Visualize (MongoModel)',
     description: 'Visual MongoDB schema designer with drag-and-drop canvas, MCP server (31 tools), 8-format code generation, 3D workflow visualization, and workspace-wide linting — built for teams who think in Thai.',
     tags: ['Next.js 16', 'React 19', 'MCP', 'TypeScript', 'AI Collaboration'],
-    github: 'https://github.com/jaturapornchai/mongomodeleditor',
   },
   {
     client: 'Self-Initiated',
     name: 'Hauction — Hybrid Auction Platform',
     description: 'Multi-shop auction platform supporting both Event-Based (Live) and Long-Term (Marketplace) types. Features 5-role RBAC, WebSocket bidding, Meta design system, and full Thai Baht localization.',
     tags: ['Next.js', 'better-sqlite3', 'RBAC', 'Real-time'],
+    caseStudy: CASE_STUDY_HAUCTION,
   },
   {
     client: 'Krungthai Bank',
@@ -243,6 +271,7 @@ const projects = [
     name: 'GitlabSelfhost — Migration & Inventory',
     description: 'Automated migration tool for self-hosted GitLab instances. Processed 1000+ projects with structured CSV schema, logic-based mapping, bulk operations, and data integrity preservation.',
     tags: ['GitLab REST API', 'CSV Schema', 'Bulk Migration', 'Data Validation'],
+    caseStudy: CASE_STUDY_GITLAB,
   },
   {
     client: 'Self-Initiated',
@@ -258,6 +287,82 @@ const projects = [
   },
 ]
 
+/* ========================================
+   Case Studies — direct links, no flip.
+   These exist to be clicked, so nothing hides behind an interaction.
+   ======================================== */
+const caseStudies = [
+  {
+    kind: 'Internal tooling',
+    name: 'Migrating 1,000+ GitLab projects',
+    dek: 'Discovery, planning, and execution as three separate passes over one file a human can actually read.',
+    tags: ['Python', 'GitLab REST API', 'Bulk operations'],
+    url: CASE_STUDY_GITLAB,
+  },
+  {
+    kind: 'Product architecture',
+    name: 'Two auction models, one definition of who won',
+    dek: 'A live event auction and a months-long marketplace listing, running on one bid ledger without forking the engine.',
+    tags: ['Next.js', 'WebSockets', 'RBAC', 'Serialization'],
+    url: CASE_STUDY_HAUCTION,
+  },
+]
+
+function CaseStudies() {
+  return (
+    <section id="case-studies" className="relative z-10 px-6 py-20 max-w-6xl mx-auto">
+      <RevealOnScroll>
+        <h2
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-4 text-white"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          Case Studies
+        </h2>
+        <p className="text-white/50 text-center max-w-2xl mx-auto mb-16">
+          The reasoning behind two of these systems — the constraint, the design, and the decision
+          that mattered.
+        </p>
+      </RevealOnScroll>
+
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+        {caseStudies.map((cs, i) => (
+          <RevealOnScroll key={i} className="h-full">
+            <a
+              href={cs.url}
+              className="group flex h-full flex-col rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm p-8 transition-colors hover:border-white/30"
+            >
+              <span className="text-xs font-bold uppercase tracking-widest text-white/50 mb-4">
+                {cs.kind}
+              </span>
+              <h3
+                className="text-2xl sm:text-3xl text-white leading-tight mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {cs.name}
+              </h3>
+              <p className="text-sm text-white/70 leading-relaxed mb-6 flex-1">{cs.dek}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {cs.tags.map((tag, j) => (
+                  <span
+                    key={j}
+                    className="text-[10px] px-2.5 py-1 rounded-full font-medium bg-white/10 text-white/70"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <span className="text-sm text-white font-semibold">
+                Read the case study{' '}
+                <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+              </span>
+            </a>
+          </RevealOnScroll>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function Projects() {
   return (
     <section id="projects" className="relative z-10 px-6 py-20 max-w-7xl mx-auto">
@@ -268,7 +373,7 @@ function Projects() {
         >
           Selected Work
         </h2>
-        <p className="text-white/40 text-center max-w-2xl mx-auto mb-16">
+        <p className="text-white/50 text-center max-w-2xl mx-auto mb-16">
           Real systems, real clients, real impact. Each project shipped to production and used by thousands — or millions — of people.
         </p>
       </RevealOnScroll>
@@ -334,7 +439,7 @@ function ProjectCard({ project, colorIndex }: { project: typeof projects[number]
       minHeight={400}
       front={
         <>
-          <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
             Client
           </span>
           <h3
@@ -375,17 +480,16 @@ function ProjectCard({ project, colorIndex }: { project: typeof projects[number]
             ))}
           </div>
 
-          {project.github && (
+          {project.caseStudy && (
             <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-white/70 hover:text-white inline-flex items-center gap-1"
+              href={project.caseStudy}
+              className="text-xs text-white hover:text-white/70 inline-flex items-center gap-1 font-semibold"
               onClick={(e) => e.stopPropagation()}
             >
-              View on GitHub →
+              Read the case study →
             </a>
           )}
+
         </>
       }
     />
@@ -446,7 +550,7 @@ function Experience() {
             minHeight={380}
             front={
               <>
-                <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+                <span className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
                   {exp.period}
                 </span>
                 <h3
@@ -472,7 +576,7 @@ function Experience() {
                 <ul className="space-y-2">
                   {exp.highlights.map((h, j) => (
                     <li key={j} className="text-sm text-white/70 flex items-start gap-2">
-                      <span className="text-white/40 mt-1.5">•</span>
+                      <span className="text-white/50 mt-1.5">•</span>
                       {h}
                     </li>
                   ))}
@@ -536,7 +640,7 @@ function Stack() {
             minHeight={280}
             front={
               <>
-                <span className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
+                <span className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
                   {cat.items.length} technologies
                 </span>
                 <h3
@@ -575,6 +679,133 @@ function Stack() {
 }
 
 /* ========================================
+   AI & Agentic Systems
+   ======================================== */
+const aiCapabilities = [
+  {
+    title: 'Domain Q&A Agents',
+    blurb:
+      'pi-agent and hermes-agent — codeless Q&A systems built for organisations whose material is dense and specialised. A local RAG retrieves passages; these reason across them, so a question that needs analysis comes back with an answer, not a list of excerpts.',
+    items: [
+      'pi-agent',
+      'hermes-agent',
+      'Codeless configuration',
+      'Beyond local RAG',
+      'Analytical answers',
+      'Domain-specific setup',
+      'Built for organisations',
+    ],
+  },
+  {
+    title: 'AI Loop Agents',
+    blurb:
+      'Agents that run unattended: plan, act, observe, repeat — with the stopping conditions and budgets that keep a loop from running away.',
+    items: [
+      'Plan–act–observe loops',
+      'Stopping conditions',
+      'Self-correction',
+      'Token & time budgets',
+      'Scheduled runs',
+      'Failure recovery',
+    ],
+  },
+  {
+    title: 'Agentic Software',
+    blurb:
+      'Products where an agent is a first-class component rather than a chatbot bolted on — tool surfaces, permission boundaries, and human-in-the-loop gates.',
+    items: [
+      'MCP tool design',
+      'Tool surface design',
+      'Custom agents',
+      'Permission boundaries',
+      'Human-in-the-loop gates',
+      'Multi-agent orchestration',
+      'Agent state & memory',
+    ],
+  },
+  {
+    title: 'Local AI Models',
+    blurb:
+      'Open-weight LLMs and vision models running on hardware you control — so regulated data never has to leave the building.',
+    items: [
+      'Self-hosted LLM inference',
+      'Open-weight models',
+      'Quantization',
+      'VRAM budgeting',
+      'On-prem / air-gapped',
+      'Machine vision',
+      'Object detection',
+      'OCR',
+      'Edge inference',
+    ],
+  },
+]
+
+function AICapabilities() {
+  return (
+    <section id="ai" className="relative z-10 px-6 py-20 max-w-6xl mx-auto">
+      <RevealOnScroll>
+        <h2
+          className="text-4xl sm:text-5xl md:text-6xl tracking-tight text-center mb-4 text-white"
+          style={{ fontFamily: 'var(--font-display)' }}
+        >
+          AI &amp; Agentic Systems
+        </h2>
+        <p className="text-white/50 text-center max-w-2xl mx-auto mb-16">
+          Where twenty years of architecture judgement meets agents that act on their own — built
+          codeless where the domain matters more than the plumbing, and run on hardware you control
+          where the data cannot leave.
+        </p>
+      </RevealOnScroll>
+
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-2">
+        {aiCapabilities.map((cap, i) => (
+          <FlipCard
+            key={i}
+            colorIndex={i + 3}
+            minHeight={340}
+            front={
+              <>
+                <span className="text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
+                  {cap.items.length} capabilities
+                </span>
+                <h3
+                  className="text-3xl sm:text-4xl font-bold text-white leading-tight"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {cap.title}
+                </h3>
+              </>
+            }
+            back={
+              <>
+                <h3
+                  className="text-xl font-bold text-white mb-3"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
+                  {cap.title}
+                </h3>
+                <p className="text-sm text-white/70 leading-relaxed mb-5">{cap.blurb}</p>
+                <div className="flex flex-wrap gap-2">
+                  {cap.items.map((item, j) => (
+                    <span
+                      key={j}
+                      className={`text-xs px-3 py-1.5 rounded-full font-medium ${cardColors[(i + 3) % cardColors.length].tag}`}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </>
+            }
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/* ========================================
    Contact Section
    ======================================== */
 function Contact() {
@@ -587,7 +818,7 @@ function Contact() {
         >
           Let's Build Together
         </h2>
-        <p className="text-white/40 max-w-xl mx-auto mb-10">
+        <p className="text-white/50 max-w-xl mx-auto mb-10">
           Open to consulting, architecture reviews, and ambitious projects that need someone
           who's been shipping production code since 2004 — through Wisdom Vast Co., Ltd.
         </p>
@@ -609,19 +840,30 @@ function Contact() {
           </a>
         </div>
 
+        <div className="flex flex-wrap gap-4 justify-center items-center mt-4">
+          <a
+            href={RESUME_PDF_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+          >
+            Download Resume (PDF) →
+          </a>
+        </div>
+
         {/* Machine-readable endpoints for AI agents & bots */}
         <div className="mt-12 max-w-xl mx-auto text-left rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm p-6 font-mono text-xs sm:text-sm">
-          <p className="font-sans text-[11px] uppercase tracking-widest text-white/40 mb-4">
+          <p className="font-sans text-[11px] uppercase tracking-widest text-white/50 mb-4">
             For AI agents &amp; bots
           </p>
           <p className="text-emerald-300/90 break-all">
             $ curl https://irq5.github.io/thanet-profile-/resume.json
           </p>
-          <p className="text-white/40 mt-1"># machine-readable resume · JSON Resume schema</p>
+          <p className="text-white/50 mt-1"># machine-readable resume · JSON Resume schema</p>
           <p className="text-emerald-300/90 break-all mt-4">
             $ curl https://irq5.github.io/thanet-profile-/llms.txt
           </p>
-          <p className="text-white/40 mt-1"># LLM-friendly guide to this site</p>
+          <p className="text-white/50 mt-1"># LLM-friendly guide to this site</p>
           <div className="mt-5 flex gap-4 font-sans">
             <a href={RESUME_JSON_URL} target="_blank" rel="noopener noreferrer" className="text-xs text-white/60 hover:text-white">
               resume.json →
@@ -882,8 +1124,10 @@ export default function App() {
       <About />
       <Stats />
       <Projects />
+      <CaseStudies />
       <Experience />
       <Stack />
+      <AICapabilities />
       <Contact />
     </div>
   )
