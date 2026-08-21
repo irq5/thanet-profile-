@@ -68,7 +68,7 @@
     { "name": "Backend", "keywords": ["Node.js", "Express", "REST APIs", "GraphQL", "WebSocket"] },
     { "name": "Database", "keywords": ["PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis"] },
     { "name": "Architecture", "keywords": ["System Analysis & Design", "Microservices", "RBAC", "OAuth 2.0", "API Design"] },
-    { "name": "AI & Agents", "keywords": ["Model Context Protocol (MCP)", "Codeless domain Q&A agents", "AI loop agents", "Agentic software architecture", "Custom agents", "Multi-agent orchestration", "Human-in-the-loop design", "LLM Integration", "AI-assisted SDLC", "Code Generation"] },
+    { "name": "AI & Agents", "keywords": ["Model Context Protocol (MCP)", "Auditable domain Q&A agents", "Answer traceability", "AI loop agents", "Agentic software architecture", "Custom agents", "Multi-agent orchestration", "Human-in-the-loop design", "LLM Integration", "AI-assisted SDLC", "Code Generation"] },
   { "name": "Local AI", "keywords": ["Self-hosted LLM inference", "Open-weight models", "Quantization", "On-prem / air-gapped deployment", "Machine vision", "Object detection", "OCR", "Edge inference"] },
     { "name": "DevOps", "keywords": ["Git", "Docker", "CI/CD", "AWS", "Vercel", "Linux"] }
   ],
@@ -94,9 +94,9 @@
       "keywords": ["Next.js", "GitLab OAuth", "LLM Integration"]
     },
     {
-      "name": "pi-agent / hermes-agent — Codeless Domain Q&A Agents",
-      "description": "Question-answering systems built for organisations working with dense, specialised material. Configured rather than coded, and deliberately not a conventional local RAG: instead of returning retrieved passages, the agents reason across the material so questions that require analysis come back with an answer.",
-      "keywords": ["Agentic AI", "Codeless", "Domain Q&A", "Local model inference"],
+      "name": "pi-agent / hermes-agent — Auditable Domain Q&A Agents",
+      "description": "Question-answering systems for organisations working with dense, specialised material, built without a vector store. The corpus is plain markdown in directories the domain owner lays out, re-indexed as material arrives and retrieved by full-text search across files and their relations — no top-k to guess, no chunk boundary to tune. Every answer carries its source path, so verification is opening the file. New capability is added by asking the agent to build a skill rather than by writing code or wiring a workflow tool.",
+      "keywords": ["Agentic AI", "Full-text search", "Answer traceability", "Codeless", "Local model inference"],
       "url": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html"
     },
     {

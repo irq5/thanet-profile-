@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Case study — why pi-agent and hermes-agent are not a local RAG: retrieval returns the passages that resemble a question, not the ones that answer it. By Thanet Arnont." />
+    <meta name="description" content="Case study — answering questions over an organisation's own material with no vector store, no chunk size, and no k to guess: a markdown corpus a person can open, so every answer traces back to a file. By Thanet Arnont." />
 
     <!-- Open Graph / social sharing -->
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Why these agents are not a local RAG — Case study by Thanet Arnont" />
-    <meta property="og:description" content="Retrieval quality was never the bottleneck. Looking like the question and answering it are two different things." />
+    <meta property="og:title" content="An answer you can open the file and check — Case study by Thanet Arnont" />
+    <meta property="og:description" content="No vector store, no chunk size, no k to guess — and every answer carries the path it came from." />
     <meta property="og:url" content="https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html" />
     <meta property="og:image" content="https://irq5.github.io/thanet-profile-/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Why these agents are not a local RAG — Case study by Thanet Arnont" />
-    <meta name="twitter:description" content="Retrieval quality was never the bottleneck. Looking like the question and answering it are two different things." />
+    <meta name="twitter:title" content="An answer you can open the file and check — Case study by Thanet Arnont" />
+    <meta name="twitter:description" content="No vector store, no chunk size, no k to guess — and every answer carries the path it came from." />
     <meta name="twitter:image" content="https://irq5.github.io/thanet-profile-/og.png" />
 
     <link rel="canonical" href="https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html" />
@@ -27,8 +27,8 @@
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "@id": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html#article",
-        "headline": "Why these agents are not a local RAG",
-        "description": "Retrieval returns the passages that most resemble a question, which is a different thing from the passages that answer it. Why pi-agent and hermes-agent are built around reasoning across the material instead, and configured by the people who own the domain rather than coded.",
+        "headline": "An answer you can open the file and check",
+        "description": "Answering questions over an organisation's own material without a vector store, a chunk size, or a k to guess: a markdown corpus in directories the domain owner lays out, re-indexed on arrival and searched full-text, so every answer carries the path it came from.",
         "url": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html",
         "inLanguage": "en",
         "datePublished": "2026-08-21",
@@ -115,11 +115,23 @@
           },
           {
             "@type": "Thing",
+            "name": "Full-text search"
+          },
+          {
+            "@type": "Thing",
+            "name": "Graph RAG"
+          },
+          {
+            "@type": "Thing",
             "name": "Agentic AI"
           },
           {
             "@type": "Thing",
             "name": "Domain question answering"
+          },
+          {
+            "@type": "Thing",
+            "name": "Answer traceability"
           },
           {
             "@type": "Thing",
@@ -138,14 +150,14 @@
           "@id": "https://irq5.github.io/thanet-profile-/#website"
         },
         "image": "https://irq5.github.io/thanet-profile-/og.png",
-        "articleBody": "The problem. An organisation's specialised material — regulations, procedures, technical standards, accumulated case history — is dense and interconnected. The questions people actually ask about it are rarely lookups. They sound more like: does this case fall under the exception, and if it does, what else changes as a result? That is a question about how several parts of the material relate to each other. The default answer in 2026 is a local RAG: embed the documents, retrieve the passages that match the question, hand them to a model. For lookups it works well and it is the right tool. For this it does not, and the reason is structural rather than a tuning problem. Retrieval returns the passages that most resemble the question — and a question that requires analysis does not resemble the passages that answer it. Chunking compounds it by discarding the structure the answer depends on: which section governs which, what supersedes what, which exception was added later.\n\nThe approach. pi-agent and hermes-agent are built the other way round. Rather than retrieving passages and hoping the model can assemble an argument from them, the agent decides what to consult, works through the material with its structure intact, and reasons across the parts before answering. The second half matters as much as the first: these are configured, not coded. The people who own the domain set the system up themselves, because they are the ones who know which distinctions matter — and they can change it when the material changes, without waiting for a release.\n\nThe two shapes. A conventional local RAG runs question, embed and search, top-k passages, stuff into prompt, answer. The agentic shape runs question, decide what to consult, work through the material with structure intact, reason across parts, answer with its reasoning. Both run against models hosted where the material already is, so nothing has to leave the organisation to get an answer — which is usually the constraint that rules out a hosted API in the first place.\n\nThe result. A question that requires analysis comes back with an answer and the reasoning behind it, instead of a list of excerpts for the reader to synthesise. In use at organisations working with material of exactly this kind.\n\nThe decision that mattered. RAG was the default, and defaults are safe. Choosing against one means owning more of the design and having to defend it. What made that worth accepting was noticing that retrieval quality had never been the bottleneck. Better embeddings, better chunking, better reranking — all of it improves how well the system finds passages that look like the question. None of it changes the fact that looking like the question and answering it are two different things.",
-        "wordCount": 456
+        "articleBody": "The problem. An organisation's specialised material — regulations, procedures, technical standards, accumulated case history — is dense and interconnected. The questions people actually ask about it are rarely lookups. They sound more like: does this case fall under the exception, and if it does, what else changes as a result? That is a question about how several parts of the material relate to each other. The default answer is a local RAG: chunk the documents, embed them, retrieve the top-k nearest passages, hand them to a model. For lookups that works well and it is the right tool. For this it leaks in three places at once, and none of them are tuning problems. The chunk boundary cuts through the structure the answer depends on — which section governs which, what supersedes what, which exception was added later. The size of k has to be guessed: too small and the answer is not in the window, too large and it is buried under near-misses that scored well and mean nothing. And when an answer does come back, there is nothing to open. A vector neighbourhood is not something a person can inspect and disagree with. That last one is the disqualifying one. In a regulated setting, an answer nobody can trace is not an answer — it is a suggestion with good grammar.\n\nThe approach. Change the substrate rather than the tuning. The corpus is plain markdown, and the directory layout belongs to the people who own the domain: they decide what sits where, because they are the ones who know which distinctions matter. New material triggers a re-index as it arrives, so freshness is not a separate job that someone forgets to run. Retrieval is full-text search across those files and the relations the structure expresses — closer in spirit to a graph RAG than to a vector one, except the graph is a directory tree and a set of documents, which is to say it is legible. There is no k to choose and no chunk boundary to tune. The agent decides what to consult, reads it with its structure intact, and reasons across the parts before answering. Because an answer arrives with the path it came from, verification is opening the file. That is the whole design; everything else follows from wanting that property. Capability is extended the same way: rather than writing code or wiring an n8n flow for each new task, you ask the agent to build a skill, so the people closest to the work add to the system without a release cycle standing between them and it.\n\nThe two substrates. A vector RAG runs documents, chunk and embed, vector store, top-k by similarity, answer — losing the structure at the chunk boundary, guessing at k, and arriving with no path back. The alternative runs new material, re-index on arrival, a markdown corpus in directories the domain owner lays out, full-text search across files and their relations, then an answer plus its source path — and a person opens that file and checks the answer against it. No k to choose, no chunk boundary to tune, and retrieval noise becomes a structure problem fixed by moving a file rather than by hoping the next reranker behaves. Everything runs against models hosted where the material already is, so nothing leaves the organisation.\n\nThe result. Questions that require analysis come back with an answer and the reasoning behind it, instead of a list of excerpts for the reader to synthesise — and every answer can be walked back to the file it came from. Retrieval noise stops being a tuning problem and becomes a structure problem, which is a much better kind of problem.\n\nThe decision that mattered. Choosing a substrate a human can audit, and accepting the cost of that choice. Vector search is genuinely better at finding text that resembles a query, and giving it up meant giving up something real. What made it worth it: retrieval quality was never the bottleneck. Better embeddings, better chunking, better reranking all improve how well the system finds passages that look like the question. None of them change the fact that looking like the question and answering it are two different things — and none of them give the person holding the answer anything to open.",
+        "wordCount": 719
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Why these agents are not a local RAG — Case study · Thanet Arnont</title>
+    <title>An answer you can open the file and check — Case study · Thanet Arnont</title>
   </head>
   <body>
     <div id="root"></div>

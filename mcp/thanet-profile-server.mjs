@@ -46,7 +46,7 @@ const CASE_STUDIES = {
     url: `${BASE}case-studies/hauction.html`,
   },
   'beyond-rag': {
-    title: 'Why these agents are not a local RAG',
+    title: 'An answer you can open the file and check',
     kind: 'Applied AI',
     url: `${BASE}case-studies/beyond-rag.html`,
   },

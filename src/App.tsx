@@ -309,9 +309,9 @@ const caseStudies = [
   },
   {
     kind: 'Applied AI',
-    name: 'Why these agents are not a local RAG',
-    dek: 'Retrieval returns the passages that resemble a question — which is a different thing from the ones that answer it.',
-    tags: ['Agentic AI', 'Codeless', 'Local inference', 'Domain Q&A'],
+    name: 'An answer you can open the file and check',
+    dek: 'No vector store, no chunk size, no k to guess — a markdown corpus a person laid out, so every answer traces back to a file.',
+    tags: ['Full-text search', 'Answer traceability', 'Codeless', 'Local inference'],
     url: CASE_STUDY_BEYOND_RAG,
   },
 ]
@@ -693,15 +693,16 @@ const aiCapabilities = [
   {
     title: 'Domain Q&A Agents',
     blurb:
-      'pi-agent and hermes-agent — codeless Q&A systems built for organisations whose material is dense and specialised. A local RAG retrieves passages; these reason across them, so a question that needs analysis comes back with an answer, not a list of excerpts.',
+      'pi-agent and hermes-agent — Q&A over an organisation\'s own material with no vector store and no k to guess. A markdown corpus in directories the domain owner lays out, re-indexed on arrival, so every answer carries the path it came from and can be checked by opening the file.',
     items: [
       'pi-agent',
       'hermes-agent',
-      'Codeless configuration',
-      'Beyond local RAG',
-      'Analytical answers',
-      'Domain-specific setup',
-      'Built for organisations',
+      'Full-text search',
+      'Markdown corpus',
+      'Answer traceability',
+      'Re-index on ingest',
+      'Agent-authored skills',
+      'Beyond vector RAG',
     ],
   },
   {
