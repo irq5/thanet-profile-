@@ -45,6 +45,11 @@ const CASE_STUDIES = {
     kind: 'Product architecture',
     url: `${BASE}case-studies/hauction.html`,
   },
+  'beyond-rag': {
+    title: 'Why these agents are not a local RAG',
+    kind: 'Applied AI',
+    url: `${BASE}case-studies/beyond-rag.html`,
+  },
 }
 
 /* ---------- tools ---------- */
@@ -163,7 +168,9 @@ const TOOLS = [
       const STRONG = [
         {
           area: 'Correctness under concurrency — order of events decides the outcome',
-          match: has('auction', 'bid', 'concurren', 'race', 'real-time', 'realtime', 'settlement', 'queue', 'ordering', 'websocket'),
+          match: has('auction', 'bid', 'concurren', 'race', 'real-time', 'realtime', 'settlement',
+            'queue', 'ordering', 'websocket', 'first-come', 'who was first', 'simultaneous',
+            'at the same time', 'double-spend', 'locking', 'oversell', 'live event'),
           evidence: ['NBTC Digital TV Spectrum Auction — national-scale multi-bidder engine', 'Hauction — two auction modes on one serialized bid ledger'],
         },
         {
@@ -173,12 +180,20 @@ const TOOLS = [
         },
         {
           area: 'AI that must run where the data cannot leave',
-          match: has('on-prem', 'onprem', 'air-gap', 'airgap', 'local model', 'local llm', 'self-host', 'selfhost', 'data residency', 'privacy', 'sovereign', 'confidential'),
+          // phrased the way people actually phrase it, not just the jargon
+          match: has('on-prem', 'onprem', 'air-gap', 'airgap', 'local model', 'local llm', 'self-host',
+            'selfhost', 'data residency', 'privacy', 'sovereign', 'confidential', 'cannot leave',
+            "can't leave", 'must not leave', 'may leave', 'leave our network', 'leave the network',
+            'leave our premises', 'leave the building', 'leave the country', 'stay inside',
+            'internal only', 'no cloud', 'without the cloud', 'behind our firewall', 'our own server',
+            'our own hardware', 'our data centre', 'our data center', 'in-house', 'classified'),
           evidence: ['Self-hosted open-weight LLM inference and local machine vision', 'pi-agent / hermes-agent — codeless domain Q&A built as an alternative to conventional local RAG'],
         },
         {
           area: 'Agentic software and LLM tooling',
-          match: has('agent', 'mcp', 'llm', 'rag', 'copilot', 'chatbot', 'tool use', 'automation loop'),
+          match: has('agent', 'mcp', 'llm', 'rag', 'copilot', 'chatbot', 'tool use', 'automation loop',
+            'gpt', 'claude', 'embedding', 'vector', 'retrieval', 'knowledge base', 'ask questions about',
+            'answer questions', 'q&a', 'summaris', 'summariz', 'prompt'),
           evidence: ['MongoModel — MCP server exposing 31 tools so agents and the web UI share one model', 'SDLC_AI — LLM feedback across the software lifecycle', 'pi-agent / hermes-agent'],
         },
         {

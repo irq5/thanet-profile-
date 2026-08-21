@@ -96,7 +96,8 @@
     {
       "name": "pi-agent / hermes-agent — Codeless Domain Q&A Agents",
       "description": "Question-answering systems built for organisations working with dense, specialised material. Configured rather than coded, and deliberately not a conventional local RAG: instead of returning retrieved passages, the agents reason across the material so questions that require analysis come back with an answer.",
-      "keywords": ["Agentic AI", "Codeless", "Domain Q&A", "Local model inference"]
+      "keywords": ["Agentic AI", "Codeless", "Domain Q&A", "Local model inference"],
+      "url": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html"
     },
     {
       "name": "GitlabSelfhost — Migration & Inventory",

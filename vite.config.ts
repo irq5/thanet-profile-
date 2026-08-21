@@ -22,6 +22,7 @@ export default defineConfig({
         main: entry('index.html'),
         'gitlab-migration': entry('case-studies/gitlab-migration.html'),
         hauction: entry('case-studies/hauction.html'),
+        'beyond-rag': entry('case-studies/beyond-rag.html'),
       },
     },
   },

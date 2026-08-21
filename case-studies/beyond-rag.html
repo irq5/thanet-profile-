@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case study — why pi-agent and hermes-agent are not a local RAG: retrieval returns the passages that resemble a question, not the ones that answer it. By Thanet Arnont." />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Why these agents are not a local RAG — Case study by Thanet Arnont" />
+    <meta property="og:description" content="Retrieval quality was never the bottleneck. Looking like the question and answering it are two different things." />
+    <meta property="og:url" content="https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html" />
+    <meta property="og:image" content="https://irq5.github.io/thanet-profile-/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why these agents are not a local RAG — Case study by Thanet Arnont" />
+    <meta name="twitter:description" content="Retrieval quality was never the bottleneck. Looking like the question and answering it are two different things." />
+    <meta name="twitter:image" content="https://irq5.github.io/thanet-profile-/og.png" />
+
+    <link rel="canonical" href="https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html" />
+    <link rel="alternate" type="application/json" title="Resume (JSON Resume schema)" href="https://irq5.github.io/thanet-profile-/resume.json" />
+    <!-- schema.org JSON-LD: the structured layer crawlers and agents read -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html#article",
+        "headline": "Why these agents are not a local RAG",
+        "description": "Retrieval returns the passages that most resemble a question, which is a different thing from the passages that answer it. Why pi-agent and hermes-agent are built around reasoning across the material instead, and configured by the people who own the domain rather than coded.",
+        "url": "https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html",
+        "inLanguage": "en",
+        "datePublished": "2026-08-21",
+        "dateModified": "2026-08-21",
+        "author": {
+          "@type": "Person",
+          "@id": "https://irq5.github.io/thanet-profile-/#thanet",
+          "name": "Thanet Arnont",
+          "jobTitle": "Senior Software Engineer & System Architect",
+          "description": "System architect with 20+ years of continuous production experience since 2004, across Thailand's telecom, banking, and government sectors. Now builds AI-driven platforms, agentic software, and developer tooling.",
+          "url": "https://irq5.github.io/thanet-profile-/",
+          "image": "https://irq5.github.io/thanet-profile-/thanet-portrait.jpg",
+          "email": "mailto:thanet@wisdomvast.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nonthaburi",
+            "addressCountry": "TH"
+          },
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Wisdom Vast Co., Ltd.",
+            "description": "Consulting: architecture reviews, system design, and hands-on delivery."
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "King Mongkut's Institute of Technology Ladkrabang (KMITL)"
+          },
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "B.Eng. Computer Engineering"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/in/thanet-arnont/"
+          ],
+          "knowsLanguage": [
+            {
+              "@type": "Language",
+              "name": "Thai",
+              "alternateName": "th"
+            },
+            {
+              "@type": "Language",
+              "name": "English",
+              "alternateName": "en"
+            }
+          ],
+          "knowsAbout": [
+            "System architecture",
+            "Real-time bidding systems",
+            "WebSocket engines",
+            "State machine design",
+            "Government-grade audit trails",
+            "Regulatory compliance systems",
+            "Model Context Protocol (MCP)",
+            "Agentic software architecture",
+            "AI loop agents",
+            "Codeless domain question-answering agents",
+            "Self-hosted LLM inference",
+            "On-premise and air-gapped AI deployment",
+            "Machine vision",
+            "Next.js",
+            "React",
+            "TypeScript",
+            "Node.js",
+            "Python",
+            "PostgreSQL",
+            "MongoDB",
+            "Enterprise GitLab migration"
+          ],
+          "seeks": {
+            "@type": "Demand",
+            "name": "Consulting engagements: architecture reviews, system design, hands-on delivery"
+          }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Wisdom Vast Co., Ltd."
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Retrieval-augmented generation"
+          },
+          {
+            "@type": "Thing",
+            "name": "Agentic AI"
+          },
+          {
+            "@type": "Thing",
+            "name": "Domain question answering"
+          },
+          {
+            "@type": "Thing",
+            "name": "Codeless configuration"
+          },
+          {
+            "@type": "Thing",
+            "name": "On-premise LLM inference"
+          },
+          {
+            "@type": "Thing",
+            "name": "Applied AI architecture"
+          }
+        ],
+        "isPartOf": {
+          "@id": "https://irq5.github.io/thanet-profile-/#website"
+        },
+        "image": "https://irq5.github.io/thanet-profile-/og.png",
+        "articleBody": "The problem. An organisation's specialised material — regulations, procedures, technical standards, accumulated case history — is dense and interconnected. The questions people actually ask about it are rarely lookups. They sound more like: does this case fall under the exception, and if it does, what else changes as a result? That is a question about how several parts of the material relate to each other. The default answer in 2026 is a local RAG: embed the documents, retrieve the passages that match the question, hand them to a model. For lookups it works well and it is the right tool. For this it does not, and the reason is structural rather than a tuning problem. Retrieval returns the passages that most resemble the question — and a question that requires analysis does not resemble the passages that answer it. Chunking compounds it by discarding the structure the answer depends on: which section governs which, what supersedes what, which exception was added later.\n\nThe approach. pi-agent and hermes-agent are built the other way round. Rather than retrieving passages and hoping the model can assemble an argument from them, the agent decides what to consult, works through the material with its structure intact, and reasons across the parts before answering. The second half matters as much as the first: these are configured, not coded. The people who own the domain set the system up themselves, because they are the ones who know which distinctions matter — and they can change it when the material changes, without waiting for a release.\n\nThe two shapes. A conventional local RAG runs question, embed and search, top-k passages, stuff into prompt, answer. The agentic shape runs question, decide what to consult, work through the material with structure intact, reason across parts, answer with its reasoning. Both run against models hosted where the material already is, so nothing has to leave the organisation to get an answer — which is usually the constraint that rules out a hosted API in the first place.\n\nThe result. A question that requires analysis comes back with an answer and the reasoning behind it, instead of a list of excerpts for the reader to synthesise. In use at organisations working with material of exactly this kind.\n\nThe decision that mattered. RAG was the default, and defaults are safe. Choosing against one means owning more of the design and having to defend it. What made that worth accepting was noticing that retrieval quality had never been the bottleneck. Better embeddings, better chunking, better reranking — all of it improves how well the system finds passages that look like the question. None of it changes the fact that looking like the question and answering it are two different things.",
+        "wordCount": 456
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Why these agents are not a local RAG — Case study · Thanet Arnont</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/case-studies/entry-beyond-rag.tsx"></script>
+  </body>
+</html>

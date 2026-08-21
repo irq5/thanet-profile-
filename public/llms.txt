@@ -17,6 +17,7 @@ Key facts:
 - [LinkedIn](https://www.linkedin.com/in/thanet-arnont/): professional profile
 - [Case study: migrating 1,000+ GitLab projects](https://irq5.github.io/thanet-profile-/case-studies/gitlab-migration.html): how discovery, planning, and execution were split across one reviewable plan file
 - [Case study: two auction models, one ledger](https://irq5.github.io/thanet-profile-/case-studies/hauction.html): live event and long-term marketplace auctions sharing one bid ledger, winner rule, and 5-role permission model
+- [Case study: why these agents are not a local RAG](https://irq5.github.io/thanet-profile-/case-studies/beyond-rag.html): why pi-agent and hermes-agent reason across the material instead of retrieving passages, and why they are configured rather than coded
 
 ## MCP server
 

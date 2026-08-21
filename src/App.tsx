@@ -110,6 +110,7 @@ const RESUME_JSON_URL = `${import.meta.env.BASE_URL}resume.json`
 const RESUME_PDF_URL = `${import.meta.env.BASE_URL}Thanet-Arnont-Resume.pdf`
 const CASE_STUDY_GITLAB = `${import.meta.env.BASE_URL}case-studies/gitlab-migration.html`
 const CASE_STUDY_HAUCTION = `${import.meta.env.BASE_URL}case-studies/hauction.html`
+const CASE_STUDY_BEYOND_RAG = `${import.meta.env.BASE_URL}case-studies/beyond-rag.html`
 const LLMS_TXT_URL = `${import.meta.env.BASE_URL}llms.txt`
 
 function About() {
@@ -305,6 +306,13 @@ const caseStudies = [
     dek: 'A live event auction and a months-long marketplace listing, running on one bid ledger without forking the engine.',
     tags: ['Next.js', 'WebSockets', 'RBAC', 'Serialization'],
     url: CASE_STUDY_HAUCTION,
+  },
+  {
+    kind: 'Applied AI',
+    name: 'Why these agents are not a local RAG',
+    dek: 'Retrieval returns the passages that resemble a question — which is a different thing from the ones that answer it.',
+    tags: ['Agentic AI', 'Codeless', 'Local inference', 'Domain Q&A'],
+    url: CASE_STUDY_BEYOND_RAG,
   },
 ]
 
