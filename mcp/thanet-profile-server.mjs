@@ -176,7 +176,7 @@ const TOOLS = [
         {
           area: 'Regulated and audited domains',
           match: has('government', 'regulat', 'complian', 'audit', 'bank', 'financ', 'treasury', 'public sector', 'procure', 'tax'),
-          evidence: ['Ministry of Finance — off-budget accounting', 'Krungthai Bank — treasury risk management', 'NBTC — government-grade audit trail'],
+          evidence: ['Ministry of Finance — off-budget accounting', 'Kasikornbank (KBank) — treasury risk management', 'NBTC — government-grade audit trail'],
         },
         {
           area: 'AI that must run where the data cannot leave',

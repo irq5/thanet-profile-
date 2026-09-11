@@ -133,7 +133,7 @@ function About() {
               I'm Thanet Arnont — a software engineer and system architect based in Nonthaburi,
               Thailand, shipping production systems since 2004. My path runs through the country's
               most demanding environments: mobile network R&D at DTAC, treasury risk systems for
-              Krungthai Bank, 15+ enterprise applications for AIS, the NBTC Digital TV spectrum
+              Kasikornbank (KBank), 15+ enterprise applications for AIS, the NBTC Digital TV spectrum
               auction, and financial systems for the Ministry of Finance.
             </p>
             <p className="text-white/60 leading-relaxed mb-4">
@@ -241,7 +241,7 @@ const projects = [
     caseStudy: CASE_STUDY_HAUCTION,
   },
   {
-    client: 'Krungthai Bank',
+    client: 'Kasikornbank (KBank)',
     name: 'Treasury Risk Management System',
     description: 'Financial risk analysis and reporting system for treasury operations. Handles complex risk calculations, regulatory reporting, and multi-level approval workflows.',
     tags: ['Banking', 'Finance', 'Risk Analysis', 'Enterprise'],
@@ -515,7 +515,7 @@ const experiences = [
     period: '2007–2008',
     role: 'System Analyst',
     company: 'Advance System Consulting',
-    highlights: ['Treasury Risk Management System for Krungthai Bank'],
+    highlights: ['Treasury Risk Management System for Kasikornbank (KBank)'],
   },
   {
     period: '2004–2007',
