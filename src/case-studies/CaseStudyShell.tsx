@@ -64,7 +64,7 @@ export default function CaseStudyShell({
           className="text-2xl tracking-tight text-white"
           style={{ fontFamily: 'var(--font-display)' }}
         >
-          Thanet<sup className="text-[0.5rem]">®</sup>
+          Thanet Arnont
         </a>
         <a href={PORTFOLIO_URL} className="text-sm text-white/60 hover:text-white transition-colors">
           ← Back to portfolio
@@ -112,13 +112,13 @@ export default function CaseStudyShell({
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href={CONTACT_URL}
-              className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+              className="btn text-sm"
             >
               Get in touch →
             </a>
             <a
               href={PORTFOLIO_URL}
-              className="liquid-glass rounded-full px-8 py-3 text-sm text-white hover:scale-[1.03] transition-transform"
+              className="btn text-sm"
             >
               See other work →
             </a>

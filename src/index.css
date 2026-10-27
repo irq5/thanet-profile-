@@ -36,156 +36,64 @@ body {
 }
 
 /* ========================================
-   Liquid Glass
+   Actions — one button shape, one link style
    ======================================== */
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
-  background-blend-mode: luminosity;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  padding: 0.6rem 1.4rem;
+  color: #fff;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
-.liquid-glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
-    rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+.btn:hover { border-color: #fff; }
+
+.btn-primary {
+  background: #fff;
+  border-color: #fff;
+  color: hsl(var(--background));
+}
+
+.btn-primary:hover { background: rgba(255, 255, 255, 0.85); }
+
+.link {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+
+.link:hover { text-decoration-color: #fff; }
+
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 /* ========================================
-   Animations
+   Animations — case-study header only
    ======================================== */
 @keyframes fade-rise {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
-.animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
-.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
-
-/* Hover shake for cards — uses the independent `translate` property so it
-   never overrides the rotateY transform mid flip/unflip transition */
-@keyframes shake {
-  0%, 100% { translate: 0 0; }
-  25% { translate: -3px 0; }
-  50% { translate: 3px 0; }
-  75% { translate: -2px 0; }
-}
-
-/* Idle floating bob — makes cards feel like they hover in space */
-@keyframes float-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.float-card {
-  animation: float-bob 6s ease-in-out infinite;
-}
+.animate-fade-rise { animation: fade-rise 0.5s ease-out both; }
 
 @media (prefers-reduced-motion: reduce) {
-  .float-card { animation: none; }
+  html { scroll-behavior: auto; }
+  .animate-fade-rise { animation: none; }
 }
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========================================
-   Flip Card (CSS-only 3D transform)
-   ======================================== */
-.flip-container {
-  perspective: 1200px;
-  height: 100%;
-}
-
-.flip-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: var(--card-h, 380px);
-  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.flip-container.flipped .flip-inner {
-  transform: rotateY(180deg);
-}
-
-/* Hover shake — only when NOT flipped */
-.flip-container:not(.flipped):hover .flip-inner {
-  animation: shake 0.4s ease-in-out;
-}
-
-.flip-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow:
-    0 24px 48px -16px rgba(0, 0, 0, 0.55),
-    0 8px 20px -8px rgba(0, 0, 0, 0.35);
-}
-
-.flip-back {
-  transform: rotateY(180deg);
-  overflow-y: auto;
-}
-
-.flip-back::-webkit-scrollbar { width: 4px; }
-.flip-back::-webkit-scrollbar-track { background: transparent; }
-.flip-back::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 2px; }
-
-/* ========================================
-   Card Colors — Solid gradients with visible backgrounds
-   ======================================== */
-.card-rose { background: linear-gradient(135deg, rgba(244,63,94,0.35), rgba(136,19,55,0.25)); border: 1px solid rgba(244,63,94,0.4); }
-.card-amber { background: linear-gradient(135deg, rgba(245,158,11,0.35), rgba(120,53,15,0.25)); border: 1px solid rgba(245,158,11,0.4); }
-.card-emerald { background: linear-gradient(135deg, rgba(16,185,129,0.35), rgba(6,78,59,0.25)); border: 1px solid rgba(16,185,129,0.4); }
-.card-sky { background: linear-gradient(135deg, rgba(14,165,233,0.35), rgba(12,74,110,0.25)); border: 1px solid rgba(14,165,233,0.4); }
-.card-violet { background: linear-gradient(135deg, rgba(139,92,246,0.35), rgba(76,29,149,0.25)); border: 1px solid rgba(139,92,246,0.4); }
-.card-pink { background: linear-gradient(135deg, rgba(236,72,153,0.35), rgba(131,24,67,0.25)); border: 1px solid rgba(236,72,153,0.4); }
-.card-cyan { background: linear-gradient(135deg, rgba(6,182,212,0.35), rgba(22,78,99,0.25)); border: 1px solid rgba(6,182,212,0.4); }
-.card-orange { background: linear-gradient(135deg, rgba(249,115,22,0.35), rgba(124,45,18,0.25)); border: 1px solid rgba(249,115,22,0.4); }
-.card-indigo { background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(49,46,129,0.25)); border: 1px solid rgba(99,102,241,0.4); }
-.card-teal { background: linear-gradient(135deg, rgba(20,184,166,0.35), rgba(19,78,74,0.25)); border: 1px solid rgba(20,184,166,0.4); }
-.card-fuchsia { background: linear-gradient(135deg, rgba(217,70,239,0.35), rgba(112,26,117,0.25)); border: 1px solid rgba(217,70,239,0.4); }
-
-.tag-rose { background: rgba(244,63,94,0.25); color: #fda4af; }
-.tag-amber { background: rgba(245,158,11,0.25); color: #fcd34d; }
-.tag-emerald { background: rgba(16,185,129,0.25); color: #6ee7b7; }
-.tag-sky { background: rgba(14,165,233,0.25); color: #7dd3fc; }
-.tag-violet { background: rgba(139,92,246,0.25); color: #c4b5fd; }
-.tag-pink { background: rgba(236,72,153,0.25); color: #f9a8d4; }
-.tag-cyan { background: rgba(6,182,212,0.25); color: #67e8f9; }
-.tag-orange { background: rgba(249,115,22,0.25); color: #fdba74; }
-.tag-indigo { background: rgba(99,102,241,0.25); color: #a5b4fc; }
-.tag-teal { background: rgba(20,184,166,0.25); color: #5eead4; }
-.tag-fuchsia { background: rgba(217,70,239,0.25); color: #f0abfc; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: hsl(var(--background)); }
 ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground)); }
+
+/* Section divider aligned to the content edge, not the section's padding box */
+.rule-top {
+  background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)) no-repeat 1.5rem 0 / calc(100% - 3rem) 1px;
+}
